@@ -2,33 +2,50 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
+  <!-- Makes the page scale correctly on phones -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- Browser tab title -->
   <title>DC Uptime</title>
+
+  <!-- Small description for SEO / link previews -->
   <meta
     name="description"
     content="Enabling high density AI computing through a novel building free data center design."
   />
+
+  <!-- Loads Inter font from Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link
     href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
     rel="stylesheet"
   />
+
   <style>
+    /* Global design variables so colors and spacing are easy to change later */
     :root {
       --blue-primary: #0E5FE6;
       --blue-accent: #58B4FF;
       --text-dark: #2F343D;
+      --text-muted: #56606e;
       --bg-light: #F6F8FB;
       --border: #E5EAF0;
       --white: #FFFFFF;
       --container: 1180px;
       --radius-lg: 22px;
+      --radius-md: 14px;
       --shadow-soft: 0 12px 40px rgba(24, 39, 75, 0.06);
     }
 
-    * { box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
+    /* Basic reset */
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
 
     body {
       margin: 0;
@@ -38,55 +55,87 @@
       line-height: 1.6;
     }
 
-    a { color: inherit; text-decoration: none; }
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
 
+    img {
+      display: block;
+      max-width: 100%;
+    }
+
+    /* Main page width container */
     .container {
       width: min(calc(100% - 40px), var(--container));
       margin: 0 auto;
     }
 
-    .narrow { max-width: 820px; }
+    /* Narrower container for text-only sections */
+    .narrow {
+      max-width: 820px;
+    }
 
-    .section { padding: 96px 0; }
+    /* Standard vertical spacing for sections */
+    .section {
+      padding: 96px 0;
+    }
 
+    /* Light alternating section background */
     .section-alt {
       background: #FBFCFE;
       border-top: 1px solid var(--border);
       border-bottom: 1px solid var(--border);
     }
 
+    /* Sticky top ribbon */
     .site-header {
       position: sticky;
       top: 0;
-      z-index: 10;
-      background: rgba(246, 248, 251, 0.88);
+      z-index: 20;
+      background: rgba(246, 248, 251, 0.92);
       backdrop-filter: blur(10px);
-      border-bottom: 1px solid rgba(229, 234, 240, 0.85);
+      border-bottom: 1px solid rgba(229, 234, 240, 0.9);
     }
 
+    /* Header content layout */
     .header-inner {
-      min-height: 78px;
+      min-height: 88px;
       display: flex;
       align-items: center;
       justify-content: space-between;
       gap: 24px;
+      padding: 10px 0;
     }
 
+    /* Logo container */
     .logo {
-      font-weight: 800;
-      font-size: 1.05rem;
-      letter-spacing: -0.03em;
+      display: inline-flex;
+      align-items: center;
     }
 
+    /* Makes the uploaded logo much larger */
+    .logo img {
+      height: 64px;
+      width: auto;
+      display: block;
+    }
+
+    /* Desktop navigation */
     .site-nav {
       display: flex;
       align-items: center;
       gap: 28px;
-      color: #56606e;
+      color: var(--text-muted);
       font-size: 0.95rem;
       flex-wrap: wrap;
     }
 
+    .site-nav a:not(.nav-cta) {
+      font-weight: 500;
+    }
+
+    /* Shared button styles */
     .btn,
     .nav-cta {
       display: inline-flex;
@@ -99,6 +148,7 @@
       transition: 0.2s ease;
     }
 
+    /* Main blue CTA button */
     .btn-primary,
     .nav-cta {
       background: var(--blue-primary);
@@ -106,6 +156,7 @@
       box-shadow: 0 10px 24px rgba(14, 95, 230, 0.16);
     }
 
+    /* Hero section with subtle gradient background */
     .hero {
       padding: 78px 0 88px;
       background:
@@ -113,13 +164,15 @@
         linear-gradient(180deg, #F9FBFF 0%, #F6F8FB 100%);
     }
 
+    /* Two-column hero layout */
     .hero-grid {
       display: grid;
-      grid-template-columns: 1.25fr 0.75fr;
+      grid-template-columns: 0.95fr 1.05fr;
       gap: 42px;
       align-items: center;
     }
 
+    /* Small blue label above section titles */
     .eyebrow,
     .section-label {
       margin: 0 0 14px;
@@ -135,12 +188,14 @@
       letter-spacing: -0.03em;
     }
 
+    /* Main hero headline */
     h1 {
       font-size: clamp(2.6rem, 5vw, 4.8rem);
       line-height: 1.03;
       max-width: 900px;
     }
 
+    /* Section titles */
     h2 {
       font-size: clamp(1.9rem, 3vw, 3rem);
       line-height: 1.1;
@@ -152,7 +207,9 @@
       line-height: 1.35;
     }
 
-    p { margin: 0; }
+    p {
+      margin: 0;
+    }
 
     .hero-copy {
       display: flex;
@@ -162,41 +219,52 @@
 
     .hero-text,
     .section-text {
-      color: #56606e;
+      color: var(--text-muted);
       font-size: 1.05rem;
       max-width: 760px;
     }
 
-    .hero-panel {
-      border: 1px solid var(--border);
-      border-radius: var(--radius-lg);
+    /* Beautiful image card in hero */
+    .hero-visual {
+      position: relative;
+    }
+
+    .hero-image-card {
       background: white;
+      border: 1px solid var(--border);
+      border-radius: 28px;
       box-shadow: var(--shadow-soft);
-      padding: 28px;
+      overflow: hidden;
     }
 
-    .hero-panel .mini-label {
-      font-size: 0.78rem;
-      font-weight: 700;
-      color: var(--blue-primary);
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      margin-bottom: 14px;
+    .hero-image-card img {
+      width: 100%;
+      height: auto;
+      object-fit: cover;
     }
 
-    .hero-panel h3 {
-      font-size: 1.35rem;
-      margin-bottom: 16px;
+    /* Small floating caption over image */
+    .hero-image-caption {
+      position: absolute;
+      left: 24px;
+      bottom: 24px;
+      max-width: 300px;
+      background: rgba(255, 255, 255, 0.92);
+      border: 1px solid rgba(229, 234, 240, 0.95);
+      border-radius: 18px;
+      padding: 16px 18px;
+      box-shadow: 0 10px 24px rgba(24, 39, 75, 0.08);
     }
 
-    .hero-panel ul {
-      margin: 0;
-      padding-left: 18px;
-      color: #56606e;
+    .hero-image-caption strong {
+      display: block;
+      font-size: 0.95rem;
+      margin-bottom: 4px;
     }
 
-    .hero-panel li + li {
-      margin-top: 10px;
+    .hero-image-caption span {
+      font-size: 0.9rem;
+      color: var(--text-muted);
     }
 
     .section-heading {
@@ -216,6 +284,7 @@
       grid-template-columns: repeat(3, 1fr);
     }
 
+    /* Generic white info cards */
     .card {
       background: white;
       border: 1px solid var(--border);
@@ -227,6 +296,7 @@
       align-items: flex-end;
     }
 
+    /* Contact area layout */
     .contact-grid {
       display: grid;
       grid-template-columns: 0.8fr 1.2fr;
@@ -294,6 +364,7 @@
       font-size: 0.94rem;
     }
 
+    /* Tablet adjustments */
     @media (max-width: 980px) {
       .hero-grid,
       .contact-grid,
@@ -307,68 +378,103 @@
       }
     }
 
+    /* Phone layout */
     @media (max-width: 760px) {
-      .site-nav {
-        display: none;
-      }
-
       .section {
         padding: 72px 0;
+      }
+
+      .header-inner {
+        min-height: auto;
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 14px;
+        padding: 14px 0 16px;
+      }
+
+      .logo img {
+        height: 56px;
+      }
+
+      /* Important: keep nav visible on phone, stacked under the logo */
+      .site-nav {
+        display: flex;
+        width: 100%;
+        flex-wrap: wrap;
+        gap: 12px;
+      }
+
+      h1 {
+        font-size: 2.4rem;
       }
 
       .form-row {
         grid-template-columns: 1fr;
       }
 
-      h1 {
-        font-size: 2.4rem;
+      .hero-image-caption {
+        position: static;
+        max-width: none;
+        margin-top: 14px;
       }
     }
   </style>
 </head>
 <body>
+  <!-- Top ribbon -->
   <header class="site-header">
     <div class="container header-inner">
+      <!-- Logo on the left -->
       <a href="#" class="logo">
-        <img src="logo.svg" alt="DC Uptime logo" style="height: 32px; width: auto; display: block;">
+        <img src="logo.svg" alt="DC Uptime logo" />
       </a>
+
+      <!-- Top navigation on the right -->
       <nav class="site-nav">
         <a href="#why-now">Why Now</a>
         <a href="#platform">Platform</a>
         <a href="#benefits">Benefits</a>
-        <a href="#contact">Contact</a>
         <a href="#contact" class="nav-cta">Get in touch</a>
       </nav>
     </div>
   </header>
 
   <main>
+    <!-- Hero section: first impression of the company -->
     <section class="hero section">
       <div class="container hero-grid">
+        <!-- Left side: messaging -->
         <div class="hero-copy">
           <p class="eyebrow">Next generation data center infrastructure</p>
-          <h1>Enabling high density AI computing through a novel building free data center design.</h1>
+
+          <h1>
+            Enabling high density AI computing through a novel building free data center design.
+          </h1>
+
           <p class="hero-text">
-            A new data center design approach enabling high-density compute through simplified physical architecture, integrated immersion cooling, and improved operability.
+            A new data center design approach enabling high-density compute through simplified
+            physical architecture, integrated immersion cooling, and improved operability.
           </p>
+
           <div>
             <a href="#contact" class="btn btn-primary">Get in touch</a>
           </div>
         </div>
 
-        <div class="hero-panel">
-          <p class="mini-label">Core focus</p>
-          <h3>High density AI infrastructure</h3>
-          <ul>
-            <li>Simplified physical architecture</li>
-            <li>Integrated immersion cooling</li>
-            <li>Designed for efficient operation</li>
-            <li>Built for scale</li>
-          </ul>
+        <!-- Right side: visual representation of the concept -->
+        <div class="hero-visual">
+          <div class="hero-image-card">
+            <img src="layout.jpg" alt="DC Uptime layout concept" />
+          </div>
+          <div class="hero-image-caption">
+            <strong>Concept layout preview</strong>
+            <span>Building free high-density data center architecture with integrated cooling and service access.</span>
+          </div>
         </div>
       </div>
     </section>
 
+    <!-- Why Now section -->
     <section id="why-now" class="section">
       <div class="container narrow">
         <p class="section-label">Why Now</p>
@@ -379,12 +485,14 @@
       </div>
     </section>
 
+    <!-- Benefits section -->
     <section id="benefits" class="section section-alt">
       <div class="container">
         <div class="section-heading">
           <p class="section-label">Benefits</p>
           <h2>Designed for Density, Efficiency, and Scale</h2>
         </div>
+
         <div class="card-grid four-up">
           <article class="card"><h3>Scalable high-density architecture</h3></article>
           <article class="card"><h3>Designed for PUE as low as 1.02</h3></article>
@@ -394,6 +502,7 @@
       </div>
     </section>
 
+    <!-- Platform section -->
     <section id="platform" class="section">
       <div class="container narrow">
         <p class="section-label">Platform</p>
@@ -404,12 +513,14 @@
       </div>
     </section>
 
+    <!-- Audience section -->
     <section class="section section-alt">
       <div class="container">
         <div class="section-heading">
           <p class="section-label">Audience</p>
           <h2>Who this is for</h2>
         </div>
+
         <div class="card-grid three-up">
           <article class="card"><h3>AI data center developers</h3></article>
           <article class="card"><h3>Infrastructure investors and partners</h3></article>
@@ -418,6 +529,7 @@
       </div>
     </section>
 
+    <!-- Contact section -->
     <section id="contact" class="section">
       <div class="container contact-grid">
         <div>
@@ -473,6 +585,7 @@
     </section>
   </main>
 
+  <!-- Bottom footer -->
   <footer class="site-footer">
     <div class="container footer-inner">
       <p>© 2026 DC Uptime. All rights reserved.</p>
