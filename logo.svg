@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="1600" height="500" viewBox="0 0 1600 500" xmlns="http://www.w3.org/2000/svg">
+  <title>DC Uptime logo</title>
+  <desc>Framed DC mark with gradient and larger Uptime wordmark on the right</desc>
+
+  <defs>
+    <linearGradient id="frameGrad" x1="120" y1="70" x2="500" y2="390" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#58B4FF"/>
+      <stop offset="100%" stop-color="#0E5FE6"/>
+    </linearGradient>
+    <linearGradient id="letterGrad" x1="158" y1="120" x2="462" y2="340" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#58B4FF"/>
+      <stop offset="100%" stop-color="#0E5FE6"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="1600" height="500" fill="none"/>
+
+  <!-- Framed DC mark -->
+  <g>
+    <g stroke="url(#frameGrad)" stroke-width="14" fill="none" stroke-linecap="square" stroke-linejoin="miter">
+      <path d="M120 70 H145" />
+      <path d="M185 70 H500" />
+      <path d="M500 70 V390" />
+      <path d="M500 390 H120" />
+      <path d="M120 390 V70" />
+    </g>
+
+    <g transform="translate(158,340)">
+      <path d="
+        M0 0
+        V-220
+        H56
+        L102 -220
+        L146 -176
+        V-44
+        L102 0
+        H56
+        Z"
+        fill="url(#letterGrad)"/>
+      <path d="
+        M30 -32
+        V-188
+        H52
+        L82 -188
+        L112 -158
+        V-62
+        L82 -32
+        H52
+        Z"
+        fill="white"/>
+
+      <g transform="translate(146,0)">
+        <path d="
+          M98 -220
+          H158
+          V-188
+          H108
+          L82 -188
+          L60 -166
+          V-54
+          L82 -32
+          H108
+          H158
+          V0
+          H98
+          L66 0
+          L24 -42
+          V-178
+          L66 -220
+          Z"
+          fill="url(#letterGrad)"/>
+      </g>
+    </g>
+  </g>
+
+  <!-- Larger Uptime wordmark -->
+  <text x="550" y="330"
+        font-family="Inter, Avenir Next, Helvetica Neue, Arial, sans-serif"
+        font-size="255"
+        font-weight="600"
+        letter-spacing="-5"
+        fill="#2F343D">Uptime</text>
+</svg>
