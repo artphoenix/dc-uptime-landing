@@ -177,6 +177,26 @@
       transform: translateY(-1px);
     }
 
+    .contact-form .btn {
+      border: none;
+      cursor: pointer;
+      transition: transform 0.2s ease, box-shadow 0.2s ease, opacity 0.2s ease;
+    }
+
+    .contact-form .btn:hover {
+      transform: translateY(-1px);
+    }
+
+    .contact-form .btn:active {
+      transform: translateY(0);
+      opacity: 0.92;
+    }
+    
+    .contact-form .btn:focus-visible {
+      outline: 2px solid rgba(255, 255, 255, 0.7);
+      outline-offset: 3px;
+    }
+
     /* Hero */
     .hero {
       padding: 80px 0 92px;
@@ -678,7 +698,56 @@
           </p>
         </div>
 
-        <form class="contact-form">
+         <form
+            class="contact-form"
+            action="https://formsubmit.co/ar@dcuptime.com"
+            method="POST"
+          >
+            <input type="hidden" name="_subject" value="New inquiry from DC Uptime landing page">
+            <input type="hidden" name="_captcha" value="false">
+            <input type="hidden" name="_template" value="table">
+          
+            <div class="form-row">
+              <div class="form-field">
+                <label for="first-name">First name</label>
+                <input id="first-name" name="first_name" type="text" required>
+              </div>
+              <div class="form-field">
+                <label for="last-name">Last name</label>
+                <input id="last-name" name="last_name" type="text" required>
+              </div>
+            </div>
+  
+            <div class="form-row">
+              <div class="form-field">
+                <label for="email">Email</label>
+                <input id="email" name="email" type="email" required>
+              </div>
+              <div class="form-field">
+                <label for="company">Company</label>
+                <input id="company" name="company" type="text">
+              </div>
+            </div>
+  
+            <div class="form-row">
+              <div class="form-field">
+                <label for="title">Title</label>
+                <input id="title" name="title" type="text">
+              </div>
+              <div class="form-field">
+                <label for="phone">Phone number <span>optional</span></label>
+                <input id="phone" name="phone" type="tel">
+              </div>
+            </div>
+  
+            <div class="form-field">
+              <label for="interest">Area of interest <span>optional</span></label>
+              <textarea id="interest" name="area_of_interest"></textarea>
+            </div>
+  
+            <button type="submit" class="btn btn-primary">Send inquiry</button>
+        </form>
+        <!-- <form class="contact-form">
           <div class="form-row">
             <div class="form-field">
               <label>First name</label>
@@ -718,7 +787,7 @@
           </div>
 
           <button type="button" class="btn btn-primary">Send inquiry</button>
-        </form>
+        </form> -->
       </div>
     </section>
   </main>
