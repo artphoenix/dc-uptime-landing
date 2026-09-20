@@ -103,8 +103,19 @@ h3{font-size:1.15rem;line-height:1.2}
 }*/
 
 .hero-inner{position:relative;z-index:2;display:grid;grid-template-columns:minmax(0,760px) 1fr;align-items:end;width:min(calc(100% - 48px),var(--shell));margin:0 auto;padding-top:70px}
-.hero-copy{grid-column:1;justify-self:start;width:100%;max-width:760px;margin:0}
-.hero h1{font-size:clamp(3.5rem,6.6vw,7.2rem);line-height:.89;margin:0 0 34px;max-width:760px}
+.hero-copy{
+  grid-column:1;
+  justify-self:start;
+  width:100%;
+  max-width:760px;
+  margin:0
+}
+.hero h1{
+  font-size:clamp(3.5rem,6.6vw,7.2rem);
+  line-height:.96;
+  margin:0 0 34px;
+  max-width:760px
+}
 .hero h1 span{color:#1680ff}
 .button{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:50px;padding:0 22px;border-radius:10px;font-weight:750;border:0;transition:transform .2s,box-shadow .2s,background .2s}
 .button-primary{background:linear-gradient(135deg,#0e67f3,#1689ff);color:white;box-shadow:0 12px 36px rgba(22,120,255,.28)}
