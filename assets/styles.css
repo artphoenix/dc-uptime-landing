@@ -116,7 +116,11 @@ h3{font-size:1.15rem;line-height:1.2}
   margin:0 0 34px;
   max-width:760px
 }
-.hero h1 span{color:#1680ff}
+.hero h1 span{
+  color:#1680ff;
+  display:inline-block;
+  margin-top:.10em;
+}
 .button{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:50px;padding:0 22px;border-radius:10px;font-weight:750;border:0;transition:transform .2s,box-shadow .2s,background .2s}
 .button-primary{background:linear-gradient(135deg,#0e67f3,#1689ff);color:white;box-shadow:0 12px 36px rgba(22,120,255,.28)}
 .button-primary:hover{transform:translateY(-2px);box-shadow:0 16px 42px rgba(22,120,255,.4)}
