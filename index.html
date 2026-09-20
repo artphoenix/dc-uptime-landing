@@ -1,836 +1,290 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <!-- Makes the page scale correctly on phones -->
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-  <!-- Browser tab title -->
-  <title>DC Uptime</title>
-
-  <!-- Short page description -->
-  <meta
-    name="description"
-    content="Enabling high-density AI through building-free data center design."
-  />
-
-  <!-- Inter font -->
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link
-    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
-    rel="stylesheet"
-  />
-
-  <style>
-    /* Global variables for colors, sizes, and reusable values */
-    :root {
-      --blue-primary: #0E5FE6;
-      --blue-accent: #58B4FF;
-      --text-dark: #2F343D;
-      --text-muted: #56606e;
-      --bg-light: #F6F8FB;
-      --border: #E5EAF0;
-      --white: #FFFFFF;
-      --container: 1180px;
-      --radius-lg: 22px;
-      --radius-md: 14px;
-      --shadow-soft: 0 12px 40px rgba(24, 39, 75, 0.06);
-      --shadow-card: 0 16px 40px rgba(18, 34, 66, 0.08);
-    }
-
-    /* Basic reset */
-    * {
-      box-sizing: border-box;
-    }
-
-    html {
-      scroll-behavior: smooth;
-    }
-
-    body {
-      margin: 0;
-      font-family: Inter, sans-serif;
-      color: var(--text-dark);
-      background: var(--bg-light);
-      line-height: 1.6;
-    }
-
-    a {
-      color: inherit;
-      text-decoration: none;
-    }
-
-    img {
-      display: block;
-      max-width: 100%;
-    }
-
-    .container {
-      width: min(calc(100% - 40px), var(--container));
-      margin: 0 auto;
-    }
-
-    .narrow {
-      max-width: 860px;
-    }
-
-    .section {
-      padding: 96px 0;
-    }
-
-    .section-alt {
-      background: #FBFCFE;
-      border-top: 1px solid var(--border);
-      border-bottom: 1px solid var(--border);
-    }
-
-    /* Sticky top header */
-    .site-header {
-      position: sticky;
-      top: 0;
-      z-index: 50;
-      background: rgba(246, 248, 251, 0.92);
-      backdrop-filter: blur(10px);
-      border-bottom: 1px solid rgba(229, 234, 240, 0.9);
-    }
-
-    .header-inner {
-      min-height: 88px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 24px;
-      padding: 10px 0;
-    }
-
-    .logo {
-      display: inline-flex;
-      align-items: center;
-    }
-
-    /* Bigger logo */
-    .logo img {
-      height: 64px;
-      width: auto;
-      display: block;
-    }
-
-    /* Desktop navigation */
-    .site-nav {
-      display: flex;
-      align-items: center;
-      gap: 28px;
-      color: var(--text-muted);
-      font-size: 0.95rem;
-    }
-
-    .site-nav a:not(.nav-cta) {
-      font-weight: 500;
-    }
-
-    /* Mobile menu button */
-    .menu-toggle {
-      display: none;
-      width: 48px;
-      height: 48px;
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      background: white;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      box-shadow: var(--shadow-soft);
-    }
-
-    .menu-toggle span {
-      display: block;
-      width: 18px;
-      height: 2px;
-      background: var(--text-dark);
-      margin: 3px 0;
-      border-radius: 999px;
-    }
-
-    /* Shared button styling */
-    .btn,
-    .nav-cta {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      min-height: 46px;
-      padding: 0 18px;
-      border-radius: 999px;
-      font-weight: 600;
-      transition: 0.2s ease;
-    }
-
-    .btn-primary,
-    .nav-cta {
-      background: var(--blue-primary);
-      color: white;
-      box-shadow: 0 10px 24px rgba(14, 95, 230, 0.16);
-    }
-
-    .btn-primary:hover,
-    .nav-cta:hover {
-      transform: translateY(-1px);
-    }
-
-    .contact-form .btn {
-      border: none;
-      cursor: pointer;
-      transition: transform 0.2s ease, box-shadow 0.2s ease, opacity 0.2s ease;
-    }
-
-    .contact-form .btn:hover {
-      transform: translateY(-1px);
-    }
-
-    .contact-form .btn:active {
-      transform: translateY(0);
-      opacity: 0.92;
-    }
-    
-    .contact-form .btn:focus-visible {
-      outline: 2px solid rgba(255, 255, 255, 0.7);
-      outline-offset: 3px;
-    }
-
-    /* Hero */
-    .hero {
-      padding: 80px 0 92px;
-      background:
-        radial-gradient(circle at top center, rgba(88,180,255,0.15), transparent 34%),
-        linear-gradient(180deg, #F9FBFF 0%, #F6F8FB 100%);
-    }
-
-    .hero-copy {
-      text-align: center;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 22px;
-      margin-bottom: 40px;
-    }
-
-    .eyebrow,
-    .section-label {
-      margin: 0 0 14px;
-      font-size: 12px;
-      font-weight: 700;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--blue-primary);
-    }
-
-    h1, h2, h3 {
-      margin: 0;
-      letter-spacing: -0.03em;
-    }
-
-    h1 {
-      font-size: clamp(2.6rem, 5vw, 4.9rem);
-      line-height: 1.03;
-      max-width: 980px;
-    }
-
-    h2 {
-      font-size: clamp(1.9rem, 3vw, 3rem);
-      line-height: 1.1;
-      margin-bottom: 18px;
-    }
-
-    h3 {
-      font-size: 1.08rem;
-      line-height: 1.35;
-    }
-
-    p {
-      margin: 0;
-    }
-
-    .hero-text,
-    .section-text {
-      color: var(--text-muted);
-      font-size: 1.05rem;
-      max-width: 760px;
-    }
-
-    /* Hero image presentation */
-    .hero-visual {
-      max-width: 1080px;
-      margin: 0 auto;
-    }
-
-    .hero-image-card {
-      background: white;
-      border: 1px solid var(--border);
-      border-radius: 28px;
-      box-shadow: 0 24px 60px rgba(18, 34, 66, 0.12);
-      overflow: hidden;
-    }
-
-    .hero-image-card img {
-      width: 100%;
-      height: auto;
-      object-fit: cover;
-    }
-
-    /* Stronger Why Now section */
-    .why-now-section {
-      background:
-        linear-gradient(180deg, rgba(14,95,230,0.04) 0%, rgba(88,180,255,0.04) 100%),
-        #ffffff;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .why-now-section::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background:
-        radial-gradient(circle at top left, rgba(14,95,230,0.08), transparent 28%),
-        radial-gradient(circle at bottom right, rgba(88,180,255,0.10), transparent 30%);
-      pointer-events: none;
-    }
-
-    .why-now-section .container {
-      position: relative;
-      z-index: 1;
-    }
-
-    /* Section heading wrapper */
-    .section-heading {
-      margin-bottom: 28px;
-    }
-
-    .card-grid {
-      display: grid;
-      gap: 20px;
-    }
-
-    .four-up {
-      grid-template-columns: repeat(4, 1fr);
-    }
-
-    .three-up {
-      grid-template-columns: repeat(3, 1fr);
-    }
-
-    /* Better benefit cards */
-    .card {
-      background: white;
-      border: 1px solid var(--border);
-      border-radius: var(--radius-lg);
-      box-shadow: var(--shadow-card);
-      padding: 28px;
-    }
-
-    .benefit-card {
-      min-height: 230px;
-      display: flex;
-      flex-direction: column;
-      align-items: flex-start;
-      justify-content: flex-start;
-      gap: 18px;
-    }
-
-    .benefit-icon {
-      width: 52px;
-      height: 52px;
-      border-radius: 14px;
-      background: linear-gradient(180deg, rgba(14,95,230,0.10), rgba(88,180,255,0.14));
-      border: 1px solid rgba(14,95,230,0.10);
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      color: var(--blue-primary);
-    }
-
-    .benefit-icon svg {
-      width: 24px;
-      height: 24px;
-      stroke: currentColor;
-      fill: none;
-      stroke-width: 1.9;
-      stroke-linecap: round;
-      stroke-linejoin: round;
-    }
-
-    .benefit-card p {
-      color: var(--text-muted);
-      font-size: 0.96rem;
-    }
-
-    /* Contact layout */
-    .contact-grid {
-      display: grid;
-      grid-template-columns: 0.8fr 1.2fr;
-      gap: 36px;
-      align-items: start;
-    }
-
-    .contact-form {
-      background: white;
-      border: 1px solid var(--border);
-      border-radius: var(--radius-lg);
-      box-shadow: var(--shadow-soft);
-      padding: 28px;
-    }
-
-    .form-row {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 16px;
-      margin-bottom: 16px;
-    }
-
-    .form-field {
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-    }
-
-    label {
-      font-size: 0.92rem;
-      font-weight: 600;
-    }
-
-    label span {
-      color: #7d8897;
-      font-weight: 500;
-    }
-
-    input,
-    textarea {
-      width: 100%;
-      padding: 14px 15px;
-      font: inherit;
-      color: var(--text-dark);
-      background: #fff;
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      outline: none;
-    }
-
-    textarea {
-      min-height: 120px;
-      resize: vertical;
-      margin-bottom: 18px;
-    }
-
-    .site-footer {
-      padding: 28px 0 42px;
-    }
-
-    .footer-inner {
-      border-top: 1px solid var(--border);
-      padding-top: 22px;
-      color: #7d8897;
-      font-size: 0.94rem;
-    }
-
-    /* Tablet adjustments */
-    @media (max-width: 980px) {
-      .four-up,
-      .three-up,
-      .contact-grid {
-        grid-template-columns: 1fr;
-      }
-    }
-
-    /* Phone behavior */
-    @media (max-width: 760px) {
-      .section {
-        padding: 72px 0;
-      }
-
-      .header-inner {
-        min-height: 74px;
-        padding: 10px 0;
-      }
-
-      .logo img {
-        height: 54px;
-      }
-
-      /* On phone hide normal nav and show menu icon */
-      .menu-toggle {
-        display: inline-flex;
-      }
-
-      .site-nav {
-        display: none;
-        position: absolute;
-        top: 82px;
-        left: 20px;
-        right: 20px;
-        background: white;
-        border: 1px solid var(--border);
-        border-radius: 18px;
-        box-shadow: 0 20px 50px rgba(18, 34, 66, 0.14);
-        padding: 14px;
-        flex-direction: column;
-        align-items: stretch;
-        gap: 10px;
-      }
-
-      .site-nav.open {
-        display: flex;
-      }
-
-      .site-nav a {
-        padding: 10px 12px;
-        border-radius: 10px;
-      }
-
-      .site-nav a:not(.nav-cta):hover {
-        background: #f5f8fd;
-      }
-
-      h1 {
-        font-size: 2.3rem;
-      }
-
-      .hero {
-        padding-top: 56px;
-      }
-
-      .hero-copy {
-        margin-bottom: 28px;
-      }
-
-      .form-row {
-        grid-template-columns: 1fr;
-      }
-
-      .benefit-card {
-        min-height: auto;
-      }
-    }
-  </style>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>DC Uptime | AI factories. Any climate. Half the cost.</title>
+  <meta name="description" content="DC Uptime builds scalable and automated AI infrastructure with building-free immersion cooling, dry heat rejection and robotic maintenance.">
+  <meta name="theme-color" content="#061525">
+  <meta property="og:title" content="DC Uptime | AI factories. Any climate. Half the cost.">
+  <meta property="og:description" content="Scalable and automated AI infrastructure for fast, efficient deployment.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://dcuptime.com/">
+  <meta property="og:image" content="https://dcuptime.com/assets/images/hero.webp">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="assets/favicon.png" type="image/png" sizes="512x512">
+  <link rel="shortcut icon" href="assets/favicon.ico">
+  <link rel="preload" as="image" href="assets/images/hero.webp" type="image/webp" fetchpriority="high">
+  <script>document.documentElement.classList.add('js')</script>
+  <link rel="stylesheet" href="assets/styles.css">
 </head>
 <body>
-  <!-- Sticky top header -->
-  <header class="site-header">
-    <div class="container header-inner">
-      <!-- Logo -->
-      <a href="#" class="logo">
-        <img src="logo.svg" alt="DC Uptime logo" />
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-header" id="site-header">
+    <div class="shell header-inner">
+      <a class="brand" href="#top" aria-label="DC Uptime home">
+        <img src="assets/logo.svg" alt="DC Uptime">
       </a>
 
-      <!-- Mobile menu button -->
-      <button class="menu-toggle" aria-label="Open menu" aria-expanded="false">
-        <div>
-          <span></span>
-          <span></span>
-          <span></span>
-        </div>
+      <button class="menu-toggle" type="button" aria-controls="site-nav" aria-expanded="false" aria-label="Open navigation">
+        <span></span><span></span><span></span>
       </button>
 
-      <!-- Navigation -->
-      <nav class="site-nav">
-        <a href="#why-now">Why Now</a>
+      <nav class="site-nav" id="site-nav" aria-label="Primary navigation">
+        <a href="#problem">Problem</a>
         <a href="#platform">Platform</a>
-        <a href="#benefits">Benefits</a>
-        <a href="#contact" class="nav-cta">Get in touch</a>
+        <a href="#robotics">Robotics</a>
+        <a href="#how-it-works">How it works</a>
+        <a href="#traction">Traction</a>
+        <a href="#contact">Contact</a>
       </nav>
+
+      <a class="header-cta" id="header-cta" href="#contact">Get in touch <span aria-hidden="true">↗</span></a>
     </div>
   </header>
 
-  <main>
-    <!-- Hero section -->
-    <section class="hero section">
-      <div class="container">
-        <div class="hero-copy">
-          <p class="eyebrow">Infrastructure for new era of compute power</p>
+  <main id="main">
+    <section class="hero" id="top" aria-labelledby="hero-title">
+      <div class="hero-media" role="img" aria-label="DC Uptime trench-integrated AI infrastructure with service station and dry coolers"></div>
+      <div class="hero-shade"></div>
+      <div class="shell hero-inner">
+        <div class="hero-copy" data-reveal>
+          <p class="eyebrow">A cleaner, faster path to AI</p>
+          <h1 id="hero-title">AI factories.<br>Any climate.<br><span>Half the cost.</span></h1>
+          <a class="button button-primary" href="#contact">Contact us <span aria-hidden="true">↗</span></a>
+        </div>
+        <p class="hero-side-note" data-reveal>Compute<br>without limits.</p>
+      </div>
+      <a class="scroll-cue" href="#mission" aria-label="Scroll to mission"><span></span></a>
+    </section>
 
-          <h1>
-            Enabling high-density AI through building-free data center design.
-          </h1>
+    <section class="mission section-dark" id="mission">
+      <div class="mission-orbit" aria-hidden="true"></div>
+      <div class="shell mission-grid">
+        <div data-reveal>
+          <p class="section-kicker">Mission</p>
+          <h2>We build scalable and automated AI infrastructure.</h2>
+        </div>
+        <div class="mission-note" data-reveal>
+          <span>A more sustainable</span>
+          <strong>AI future.</strong>
+          <span>Anywhere.</span>
+        </div>
+      </div>
 
-          <p class="hero-text">
-            A new data center design approach enabling high-density compute through simplified
-            physical architecture, integrated immersion cooling, and improved operability.
-          </p>
+      <div class="shell recognition-wrap" data-reveal>
+        <a class="recognition" href="https://www.eastbaysbdc.org/2026-startup-world-cup-east-bay-regional/" target="_blank" rel="noopener noreferrer" aria-label="Learn more about DC Uptime being a Top 10 finalist at the 2026 Startup World Cup East Bay Regional">
+          <div class="recognition-icon" aria-hidden="true">
+            <svg viewBox="0 0 64 64" role="presentation">
+              <path d="M22 10h20v9c0 8-4.2 14.7-10 17.5C26.2 33.7 22 27 22 19v-9Z"/>
+              <path d="M22 15H12v4c0 8 5.1 13 13 13M42 15h10v4c0 8-5.1 13-13 13M32 37v9M23 54h18M27 46h10v8H27z"/>
+            </svg>
+          </div>
+          <div class="recognition-title"><strong>Top 10 Finalist</strong><span>Startup World Cup · East Bay Regional</span></div>
+          <div class="recognition-copy">Selected among the Top 10 startups to pitch at the 2026 East Bay Regional.</div>
+          <div class="recognition-link">Learn more <span aria-hidden="true">↗</span></div>
+        </a>
+      </div>
+    </section>
 
+    <section class="problem section-light" id="problem">
+      <div class="shell">
+        <div class="problem-heading">
+          <div data-reveal>
+            <p class="section-kicker blue">The problem</p>
+            <h2>Conventional infrastructure was built for yesterday’s compute.</h2>
+          </div>
+          <p class="problem-intro" data-reveal>AI workloads demand more power, more density and faster deployment, but traditional data centers are slow, expensive and resource-intensive.</p>
+        </div>
+
+        <div class="problem-grid">
+          <article class="problem-card" data-reveal>
+            <div class="line-icon clock" aria-hidden="true"></div>
+            <div><h3>Years to deploy</h3><p>Traditional data centers take years to plan, permit and build.</p></div>
+          </article>
+          <article class="problem-card" data-reveal>
+            <div class="line-icon coins" aria-hidden="true"></div>
+            <div><h3>Capital intensive</h3><p>High upfront infrastructure cost and increasing operational expense.</p></div>
+          </article>
+          <article class="problem-card" data-reveal>
+            <div class="line-icon drop" aria-hidden="true"></div>
+            <div><h3>Water and location constraints</h3><p>Conventional cooling can limit where dense AI capacity can be built.</p></div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="platform section-dark" id="platform">
+      <div class="shell">
+        <div class="section-heading-row" data-reveal>
           <div>
-            <a href="#contact" class="btn btn-primary">Get in touch</a>
+            <p class="section-kicker">Our solution</p>
+            <h2>A building-free platform for next-gen AI infrastructure.</h2>
           </div>
+          <p>Integrated power, immersion compute, dry heat rejection, service stations and automation in a repeatable architecture.</p>
         </div>
 
-        <!-- Main visual -->
-        <div class="hero-visual">
-          <div class="hero-image-card">
-            <img src="layout.jpg" alt="DC Uptime layout concept" />
+        <div class="platform-frame" data-reveal>
+          <div class="platform-glow" aria-hidden="true"></div>
+          <img src="assets/images/platform-overview.png" width="1223" height="848" alt="DC Uptime platform overview showing site power and network, two service stations, two rows of dry coolers, immersion compute modules and rail-based automated maintenance" loading="lazy">
+        </div>
+      </div>
+    </section>
+
+    <section class="robotics section-deep" id="robotics">
+      <div class="shell robotics-grid">
+        <div class="robotics-copy" data-reveal>
+          <p class="section-kicker">Automated maintenance</p>
+          <h2>Rail-based robotic maintenance.</h2>
+          <p class="lead">A rail-mounted system extracts, transports and services immersed servers so routine maintenance is built into the platform.</p>
+          <ul class="feature-list">
+            <li><span>01</span>Automated extraction and insertion of wet servers/modules</li>
+            <li><span>02</span>Transport to the service station</li>
+            <li><span>03</span>Reduced routine field handling</li>
+            <li><span>04</span>Repair and diagnostics offline at the service station</li>
+          </ul>
+        </div>
+        <figure class="robotics-visual" data-reveal>
+          <img src="assets/images/robot-maintenance.webp" width="2200" height="1238" alt="Rail-based robotic system extracting a server module from an immersion trench" loading="lazy">
+          <figcaption>Automation keeps AI online.</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="how section-dark" id="how-it-works">
+      <div class="shell">
+        <div class="section-heading-row compact" data-reveal>
+          <div>
+            <p class="section-kicker">How it works</p>
+            <h2>From site to AI in six steps.</h2>
           </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Why Now -->
-    <section id="why-now" class="section why-now-section">
-      <div class="container narrow">
-        <p class="section-label">Why Now</p>
-        <h2>AI Is Rewriting the Physical Limits of the Data Center</h2>
-        <p class="section-text">
-          AI compute is driving a step change in rack density. Current rack-scale systems are already at 120 kW, and the next deployment class of 250 to 500 kW racks is already being planned. That shift is forcing a rethink of how data centers are physically designed, powered, cooled, and operated.
-        </p>
-      </div>
-    </section>
-
-    <!-- Benefits -->
-    <section id="benefits" class="section section-alt">
-      <div class="container">
-        <div class="section-heading">
-          <p class="section-label">Benefits</p>
-          <h2>Designed for Density, Efficiency, and Scale</h2>
+          <p>A repeatable module-level design from civil work to automated service.</p>
         </div>
 
-        <div class="card-grid four-up">
-          <article class="card benefit-card">
-            <div class="benefit-icon">
-              <svg viewBox="0 0 24 24" 
-                xmlns="http://www.w3.org/2000/svg">
-                 <path d="M20,19.2928932 L20,16.5 C20,16.2238576 20.2238576,16 20.5,16 C20.7761424,16 21,16.2238576 21,16.5 L21,20.5 C21,20.7761424 20.7761424,21 20.5,21 L16.5,21 C16.2238576,21 16,20.7761424 16,20.5 C16,20.2238576 16.2238576,20 16.5,20 L19.2928932,20 L16.1464466,16.8535534 C15.9511845,16.6582912 15.9511845,16.3417088 16.1464466,16.1464466 C16.3417088,15.9511845 16.6582912,15.9511845 16.8535534,16.1464466 L20,19.2928932 Z M4,4.70710678 L4,7.5 C4,7.77614237 3.77614237,8 3.5,8 C3.22385763,8 3,7.77614237 3,7.5 L3,3.5 C3,3.22385763 3.22385763,3 3.5,3 L7.5,3 C7.77614237,3 8,3.22385763 8,3.5 C8,3.77614237 7.77614237,4 7.5,4 L4.70710678,4 L7.85355339,7.14644661 C8.04881554,7.34170876 8.04881554,7.65829124 7.85355339,7.85355339 C7.65829124,8.04881554 7.34170876,8.04881554 7.14644661,7.85355339 L4,4.70710678 Z M4.70710678,20 L7.5,20 C7.77614237,20 8,20.2238576 8,20.5 C8,20.7761424 7.77614237,21 7.5,21 L3.5,21 C3.22385763,21 3,20.7761424 3,20.5 L3,16.5 C3,16.2238576 3.22385763,16 3.5,16 C3.77614237,16 4,16.2238576 4,16.5 L4,19.2928932 L7.14644661,16.1464466 C7.34170876,15.9511845 7.65829124,15.9511845 7.85355339,16.1464466 C8.04881554,16.3417088 8.04881554,16.6582912 7.85355339,16.8535534 L4.70710678,20 Z M19.2928932,4 L16.5,4 C16.2238576,4 16,3.77614237 16,3.5 C16,3.22385763 16.2238576,3 16.5,3 L20.5,3 C20.7761424,3 21,3.22385763 21,3.5 L21,7.53112887 C21,7.80727125 20.7761424,8.03112887 20.5,8.03112887 C20.2238576,8.03112887 20,7.80727125 20,7.53112887 L20,4.70710678 L16.8535534,7.85355339 C16.6582912,8.04881554 16.3417088,8.04881554 16.1464466,7.85355339 C15.9511845,7.65829124 15.9511845,7.34170876 16.1464466,7.14644661 L19.2928932,4 L19.2928932,4 Z M8,10.4949109 C8,9.11668583 9.11540994,7.99843045 10.4936306,7.99491906 L13.4936306,7.98727573 C14.8807119,7.98726762 16,9.10655574 16,10.4872676 L16,13.5 C16,14.8807119 14.8807119,16 13.5,16 L10.5,16 C9.11928813,16 8,14.8807119 8,13.5 L8,10.4949109 Z M9,10.4949109 L9,13.5 C9,14.3284271 9.67157288,15 10.5,15 L13.5,15 C14.3284271,15 15,14.3284271 15,13.5 L15,10.4872676 C15,9.65884049 14.3284271,8.98726762 13.5,8.98726762 L10.4961784,8.99491581 C9.66924596,8.99702265 9,9.66797587 9,10.4949109 Z"/>
-              </svg>
-            </div>
-            <h3>Scalable high-density architecture</h3>
-            <p>Purpose-built to support the next class of compute density without conventional building constraints.</p>
+        <div class="steps" aria-label="Six-step deployment process">
+          <article class="step-card" data-reveal>
+            <div class="step-number">1</div>
+            <div class="step-visual"><img src="assets/images/step-1.webp" width="775" height="132" alt="Excavated trench" loading="lazy"></div>
+            <h3>Excavate trench</h3>
           </article>
-
-          <article class="card benefit-card">
-            <div class="benefit-icon">
-              <svg viewBox="0 0 24 24" 
-                version="1" 
-                xmlns="http://www.w3.org/2000/svg">
-                <path fill="currentColor" d="M16.85 2.5 11 8.5l7.5 2.5 -7.85 7.35 2.55 1.4L6 21.5l1.35 -7.4 1.45 2.55L13.5 12l-7.5 -2.5L12.5 2.5z"/>
-              </svg>
-            </div>
-            <h3>Designed for PUE as low as 1.02</h3>
-            <p>Architecture centered around cooling efficiency to minimize overhead and maximize useful power.</p>
+          <article class="step-card" data-reveal>
+            <div class="step-number">2</div>
+            <div class="step-visual"><img src="assets/images/step-2.webp" width="775" height="126" alt="Immersion IT module inserted into trench" loading="lazy"></div>
+            <h3>Insert immersion IT module</h3>
           </article>
-
-          <article class="card benefit-card">
-            <div class="benefit-icon">
-              <svg 
-                fill="currentColor" 
-                viewBox="0 0 24 24" 
-                id="statistic-low" 
-                data-name="Flat Line" 
-                xmlns="http://www.w3.org/2000/svg" 
-                class="icon flat-line">
-                <line id="primary" x1="3" y1="19" x2="21" y2="19" style="fill: none; stroke: currentColor; stroke-linecap: round; stroke-linejoin: round; stroke-width: 2;">
-                  </line><polyline id="primary-2" data-name="primary" points="3 5 8 11 14 8 21 15" style="fill: none; stroke: currentColor; stroke-linecap: round; stroke-linejoin: round; stroke-width: 2;">
-                    </polyline><polyline id="primary-3" data-name="primary" points="21 10 21 15 16 15" style="fill: none; stroke: currentColor; stroke-linecap: round; stroke-linejoin: round; stroke-width: 2;">
-                      </polyline>
-              </svg>              
-            </div>
-            <h3>Lower cost to build and operate</h3>
-            <p>Reduced physical complexity can lower both upfront infrastructure cost and long term operational burden.</p>
+          <article class="step-card" data-reveal>
+            <div class="step-number">3</div>
+            <div class="step-visual"><img src="assets/images/step-3.webp" width="775" height="128" alt="Compute immersed in dielectric fluid" loading="lazy"></div>
+            <h3>Compute immersed in dielectric fluid</h3>
           </article>
-
-          <article class="card benefit-card">
-            <div class="benefit-icon">
-              <svg viewBox="0 0 24 24" 
-                style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;stroke-width:1" xml:space="preserve" 
-                xmlns="http://www.w3.org/2000/svg">
-                <path d="M12 1.125C5.998 1.125 1.125 5.998 1.125 12S5.998 22.875 12 22.875 22.875 18.002 22.875 12 18.002
-                  1.125 12 1.125m0 0.75c5.588 0 10.125 4.537 10.125 10.125S17.588 22.125 12 22.125 1.875 17.588 1.875 12 6.412 1.875 12 1.875"
-                  style="fill:currentColor"/>
-                <path d="M12.319 4.303a0.375 0.375 0 0 0 -0.639 0s-2.222 3.618 -3.556 6.874C7.536 12.615 7.125 13.987 7.125 14.965c0 2.69 2.185
-                  4.875 4.875 4.875s4.875 -2.185 4.875 -4.875c0 -0.978 -0.411 -2.35 -1 -3.787C14.542 7.921 12.319 4.303 12.319 4.303M12 5.23c-0.655
-                  1.111 -2.175 3.775 -3.181 6.231 -0.545 1.332 -0.944 2.597 -0.944 3.503 0 2.276 1.848 4.125 4.125 4.125s4.125 -1.849 4.125 -4.125c0
-                  -0.906 -0.399 -2.171 -0.944 -3.503C14.175 9.006 12.655 6.342 12 5.23" 
-                  style="fill:currentColor"/>
-                <path d="m19.236 4.234 -15 14.845a0.375 0.375 0 0 0 0.528 0.532l15 -14.845a0.375 0.375 0 0 0 -0.528 -0.532M11.941 18.37s0.802 0.139 
-                  1.718 -0.404c0.573 -0.339 1.203 -0.95 1.684 -2.068a0.375 0.375 0 0 0 -0.689 -0.297c-0.966 2.241 -2.597 2.028 -2.597 2.028a0.375 0.375 0 0 0 -0.117 0.741" 
-                  style="fill:currentColor"/>
-              </svg>
-            </div>
-            <h3>Zero water consumption</h3>
-            <p>Designed to avoid water dependent cooling infrastructure while supporting high performance thermal management.</p>
+          <article class="step-card" data-reveal>
+            <div class="step-number">4</div>
+            <div class="step-visual"><img src="assets/images/step-4.webp" width="775" height="132" alt="Heat exchanger transfers heat to water-glycol loop" loading="lazy"></div>
+            <h3>Transfer heat to water loop</h3>
+          </article>
+          <article class="step-card" data-reveal>
+            <div class="step-number">5</div>
+            <div class="step-visual"><img src="assets/images/step-5.webp" width="775" height="130" alt="Dry coolers rejecting heat to ambient air" loading="lazy"></div>
+            <h3>Reject heat with dry coolers</h3>
+          </article>
+          <article class="step-card" data-reveal>
+            <div class="step-number">6</div>
+            <div class="step-visual"><img src="assets/images/step-6.webp" width="775" height="157" alt="Robotic service system" loading="lazy"></div>
+            <h3>Service with robotics</h3>
           </article>
         </div>
       </div>
     </section>
 
-    <!-- Platform -->
-    <section id="platform" class="section">
-      <div class="container narrow">
-        <p class="section-label">Platform</p>
-        <h2>Rethinking the Data Center from the Ground Up</h2>
-        <p class="section-text">
-          The platform is built around a new physical layout that simplifies how high-density compute is deployed, cooled, and operated.
-        </p>
-        <p class="section-text" style="margin-top: 18px;">
-          Current data centers are buildings filled with complex cooling equipment. Our architecture makes the cooling system the data center.
-        </p>
+    <section class="benefits" id="benefits">
+      <div class="shell">
+        <div class="benefits-heading" data-reveal>
+          <p class="section-kicker">Key benefits</p>
+          <h2>Proven economics. Built for scale.</h2>
+        </div>
+        <div class="metric-grid">
+          <article class="metric" data-reveal><div class="metric-icon">⚡</div><strong>500 kW+</strong><span>IT load per module</span></article>
+          <article class="metric" data-reveal><div class="metric-icon">▥</div><strong>PUE as low as 1.02</strong><span>High-efficiency thermal architecture</span></article>
+          <article class="metric" data-reveal><div class="metric-icon">◯</div><strong>Zero water</strong><span>No water consumption for cooling</span></article>
+          <article class="metric" data-reveal><div class="metric-icon">$</div><strong>Lower cost</strong><span>To build and operate</span></article>
+          <article class="metric metric-price" data-reveal><div class="metric-icon">▱</div><strong>$3M per MW</strong><span>Illustrative early deployment pricing model</span></article>
+        </div>
+        <p class="disclaimer">Illustrative early estimate for investor discussions only. Subject to customer scope, site conditions, redundancy and commercial terms.</p>
       </div>
     </section>
 
-    <!-- Audience -->
-    <section class="section section-alt">
-      <div class="container">
-        <div class="section-heading">
-          <p class="section-label">Audience</p>
-          <h2>Who this is for</h2>
+    <section class="traction section-deep" id="traction">
+      <div class="shell traction-grid">
+        <div class="traction-heading" data-reveal>
+          <p class="section-kicker">Traction</p>
+          <h2>Real progress.<br>Strategic partners.</h2>
         </div>
-
-        <div class="card-grid three-up">
-          <article class="card"><h3>AI data center developers</h3></article>
-          <article class="card"><h3>Infrastructure investors and partners</h3></article>
-          <article class="card"><h3>Hyperscale and HPC teams</h3></article>
-        </div>
+        <article class="traction-card" data-reveal>
+          <img class="its-logo" src="assets/images/its-infocom.png" width="80" height="44" alt="ITS Infocom logo" loading="lazy">
+          <div><p class="card-label">Strategic partner</p><h3>ITS Infocom</h3><p>Signed MOU and pilot deployment discussions with a data center developer, owner and operator.</p></div>
+        </article>
+        <article class="traction-card" data-reveal>
+          <div class="handshake" aria-hidden="true">↔</div>
+          <div><p class="card-label">Commercial validation</p><h3>Pilot discussions underway</h3><p>Engagement with data center owners and operators around initial deployments and commercial validation.</p></div>
+        </article>
       </div>
     </section>
 
-    <!-- Contact -->
-    <section id="contact" class="section">
-      <div class="container contact-grid">
-        <div>
-          <p class="section-label">Contact</p>
-          <h2>Get in touch</h2>
-          <p class="section-text">
-            Interested in learning more? Reach out and tell us a bit about your interest.
-          </p>
+    <section class="follow" id="follow">
+      <div class="follow-bg" aria-hidden="true"></div>
+      <div class="shell follow-inner">
+        <div data-reveal>
+          <p class="section-kicker">Follow us</p>
+          <h2>Join our journey.</h2>
+          <p>Updates, milestones and insights as we build the next generation of AI infrastructure.</p>
+        </div>
+        <a class="linkedin-button" href="https://www.linkedin.com/search/results/companies/?keywords=DC%20Uptime" target="_blank" rel="noopener noreferrer" data-linkedin-link>
+          <span class="linkedin-mark">in</span> Follow us on LinkedIn <span aria-hidden="true">↗</span>
+        </a>
+        <p class="follow-tagline">Cleaner compute.<br>A brighter tomorrow.</p>
+      </div>
+    </section>
+
+    <section class="contact section-light" id="contact">
+      <div class="shell contact-grid">
+        <div class="contact-copy" data-reveal>
+          <p class="section-kicker blue">Get in touch</p>
+          <h2>Let’s build the future together.</h2>
+          <p>Interested in learning more, partnering or investing? We’d love to hear from you.</p>
         </div>
 
-         <form
-            class="contact-form"
-            action="https://formsubmit.co/ar@dcuptime.com"
-            method="POST"
-          >
-            <input type="hidden" name="_subject" value="New inquiry from DC Uptime landing page">
-            <input type="hidden" name="_captcha" value="false">
-            <input type="hidden" name="_template" value="table">
-          
-            <div class="form-row">
-              <div class="form-field">
-                <label for="first-name">First name</label>
-                <input id="first-name" name="first_name" type="text" required>
-              </div>
-              <div class="form-field">
-                <label for="last-name">Last name</label>
-                <input id="last-name" name="last_name" type="text" required>
-              </div>
-            </div>
-  
-            <div class="form-row">
-              <div class="form-field">
-                <label for="email">Email</label>
-                <input id="email" name="email" type="email" required>
-              </div>
-              <div class="form-field">
-                <label for="company">Company</label>
-                <input id="company" name="company" type="text">
-              </div>
-            </div>
-  
-            <div class="form-row">
-              <div class="form-field">
-                <label for="title">Title</label>
-                <input id="title" name="title" type="text">
-              </div>
-              <div class="form-field">
-                <label for="phone">Phone number <span>optional</span></label>
-                <input id="phone" name="phone" type="tel">
-              </div>
-            </div>
-  
-            <div class="form-field">
-              <label for="interest">Area of interest <span>optional</span></label>
-              <textarea id="interest" name="area_of_interest"></textarea>
-            </div>
-  
-            <button type="submit" class="btn btn-primary">Send inquiry</button>
+        <form class="contact-form" action="https://formsubmit.co/ar@dcuptime.com" method="POST" data-reveal>
+          <input type="hidden" name="_subject" value="New inquiry from dcuptime.com">
+          <input type="hidden" name="_captcha" value="false">
+          <input type="hidden" name="_template" value="table">
+          <input type="hidden" name="_next" value="https://dcuptime.com/thanks.html">
+          <input type="text" name="_honey" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;opacity:0;height:0;width:0;">
+          <div class="form-grid">
+            <div class="field"><label for="name">Name <span>*</span></label><input id="name" name="name" type="text" autocomplete="name" required></div>
+            <div class="field"><label for="email">Email <span>*</span></label><input id="email" name="email" type="email" autocomplete="email" required></div>
+            <div class="field"><label for="company">Company <span>*</span></label><input id="company" name="company" type="text" autocomplete="organization" required></div>
+            <div class="field field-message"><label for="message">Message <span>*</span></label><textarea id="message" name="message" rows="4" required></textarea></div>
+          </div>
+          <div class="form-footer"><p>All fields are required.</p><button class="button button-primary" type="submit">Send message <span aria-hidden="true">↗</span></button></div>
         </form>
-        <!-- <form class="contact-form">
-          <div class="form-row">
-            <div class="form-field">
-              <label>First name</label>
-              <input type="text" />
-            </div>
-            <div class="form-field">
-              <label>Last name</label>
-              <input type="text" />
-            </div>
-          </div>
-
-          <div class="form-row">
-            <div class="form-field">
-              <label>Email</label>
-              <input type="email" />
-            </div>
-            <div class="form-field">
-              <label>Company</label>
-              <input type="text" />
-            </div>
-          </div>
-
-          <div class="form-row">
-            <div class="form-field">
-              <label>Title</label>
-              <input type="text" />
-            </div>
-            <div class="form-field">
-              <label>Phone number <span>optional</span></label>
-              <input type="tel" />
-            </div>
-          </div>
-
-          <div class="form-field">
-            <label>Area of interest <span>optional</span></label>
-            <textarea></textarea>
-          </div>
-
-          <button type="button" class="btn btn-primary">Send inquiry</button>
-        </form> -->
       </div>
     </section>
   </main>
 
-  <!-- Footer -->
   <footer class="site-footer">
-    <div class="container footer-inner">
-      <p>© 2026 DC Uptime. All rights reserved.</p>
+    <div class="shell footer-main">
+      <a class="brand footer-brand" href="#top"><img src="assets/logo.svg" alt="DC Uptime"></a>
+      <p>AI infrastructure for a more sustainable tomorrow.</p>
+      <nav aria-label="Legal and social links">
+        <a href="privacy.html">Privacy Policy</a>
+        <a href="terms.html">Terms of Service</a>
+        <a href="https://www.linkedin.com/search/results/companies/?keywords=DC%20Uptime" target="_blank" rel="noopener noreferrer" data-linkedin-link>LinkedIn</a>
+      </nav>
     </div>
+    <div class="shell footer-bottom"><span>© 2026 DC Uptime. All rights reserved.</span></div>
   </footer>
 
-  <script>
-  const menuToggle = document.querySelector('.menu-toggle');
-  const siteNav = document.querySelector('.site-nav');
-
-  if (menuToggle && siteNav) {
-    function closeMenu() {
-      siteNav.classList.remove('open');
-      menuToggle.setAttribute('aria-expanded', 'false');
-    }
-
-    menuToggle.addEventListener('click', (event) => {
-      event.stopPropagation();
-      const isOpen = siteNav.classList.toggle('open');
-      menuToggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
-    });
-
-    siteNav.addEventListener('click', (event) => {
-      event.stopPropagation();
-    });
-
-    siteNav.querySelectorAll('a').forEach((link) => {
-      link.addEventListener('click', () => {
-        closeMenu();
-      });
-    });
-
-    document.addEventListener('click', () => {
-      if (siteNav.classList.contains('open')) {
-        closeMenu();
-      }
-    });
-  }
-</script>
+  <script src="assets/site.js" defer></script>
 </body>
 </html>
