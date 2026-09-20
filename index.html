@@ -379,10 +379,26 @@
         }
 
         if (mobile) {
-          const activeIndex = clamp(Math.floor(progress * callouts.length), 0, callouts.length - 1);
+          // Keep the platform image clean when it first enters the viewport.
+          // Then reveal exactly one callout at a time as the user scrolls.
+          const mobileStart = 0.22;
+          const mobileEnd = 0.96;
+
+          let activeIndex = -1;
+
+          if (progress >= mobileStart) {
+            const mobileProgress = clamp(
+              (progress - mobileStart) / (mobileEnd - mobileStart),
+              0,
+              0.9999
+            );
+            activeIndex = Math.floor(mobileProgress * callouts.length);
+          }
+
           callouts.forEach((callout, index) => {
             callout.classList.toggle('is-visible', index === activeIndex);
           });
+
           leaders.forEach((leader) => leader.classList.remove('is-visible'));
         } else {
           callouts.forEach((callout, index) => {
