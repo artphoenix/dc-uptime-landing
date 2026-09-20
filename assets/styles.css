@@ -297,6 +297,7 @@ h3{font-size:1.15rem;line-height:1.2}
 
 /* Callout 06 uses the detail transition itself as the visual reference,
    so it does not need a leader line. */
+.platform-leader[data-platform-leader="3"],
 .platform-leader[data-platform-leader="6"]{
   display:none;
 }
@@ -373,7 +374,7 @@ h3{font-size:1.15rem;line-height:1.2}
 .callout-power{left:2.0%;top:7%}
 .callout-service{left:24%;top:3%}
 .callout-cooling{right:3%;top:5%}
-.callout-robot{right:2.5%;top:40%}
+.callout-robot{right:2.5%;top:47%}
 .callout-distribution{left:22%;bottom:4%}
 .callout-immersion{right:5%;bottom:3.5%}
 
