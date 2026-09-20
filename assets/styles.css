@@ -237,9 +237,61 @@ h3{font-size:1.15rem;line-height:1.2}
   width:91%;
   height:84%;
   object-fit:contain;
+  opacity:1;
+  transform:scale(1);
   filter:
     drop-shadow(0 28px 38px rgba(0,0,0,.46))
     drop-shadow(0 0 18px rgba(78,169,255,.055));
+  transition:
+    opacity .8s ease,
+    transform 1s cubic-bezier(.2,.75,.2,1),
+    filter .8s ease;
+}
+
+.platform-detail-image{
+  position:absolute;
+  z-index:3;
+  left:4%;
+  top:5%;
+  width:92%;
+  height:90%;
+  object-fit:contain;
+  opacity:0;
+  transform:scale(.94);
+  filter:
+    drop-shadow(0 30px 44px rgba(0,0,0,.48))
+    drop-shadow(0 0 24px rgba(255,110,50,.07));
+  transition:
+    opacity .8s ease,
+    transform 1s cubic-bezier(.2,.75,.2,1),
+    filter .8s ease;
+  pointer-events:none;
+}
+
+.platform-image-wrap.detail-active .platform-system-image{
+  opacity:0;
+  transform:scale(.965);
+  filter:
+    blur(5px)
+    drop-shadow(0 20px 34px rgba(0,0,0,.3));
+}
+
+.platform-image-wrap.detail-active .platform-detail-image{
+  opacity:1;
+  transform:scale(1);
+}
+
+/* Once we move into the immersion-module close-up, clear the old system
+   callouts so the detailed module remains easy to read. */
+.platform-image-wrap.detail-active .platform-callout:not(.callout-immersion){
+  opacity:0;
+  transform:translateY(6px) scale(.985);
+}
+
+/* Callout 06 uses the detail transition itself as the visual reference,
+   so it does not need a leader line. */
+.platform-leader[data-platform-leader="6"]{
+  display:none;
 }
 .platform-glow{
   position:absolute;
@@ -505,6 +557,14 @@ h3{font-size:1.15rem;line-height:1.2}
     object-position:center;
   }
 
+  .platform-detail-image{
+    left:2%;
+    top:2%;
+    width:96%;
+    height:96%;
+    object-fit:contain;
+  }
+
   .platform-glow{
     inset:5%;
   }
@@ -582,6 +642,11 @@ h3{font-size:1.15rem;line-height:1.2}
   .callout-robot{--pin-x:68.5%;--pin-line:82px}
   .callout-distribution{--pin-x:51%;--pin-line:74px}
   .callout-immersion{--pin-x:62%;--pin-line:70px}
+
+  .callout-immersion::before,
+  .callout-immersion::after{
+    display:none!important;
+  }
 
   .callout-power::after{
     box-shadow:
@@ -680,6 +745,13 @@ h3{font-size:1.15rem;line-height:1.2}
     max-height:none;
   }
 
+  .platform-detail-image{
+    left:1%;
+    top:1%;
+    width:98%;
+    height:98%;
+  }
+
   /* Compact card below the image, never over it. */
   .platform-callout{
     left:4px!important;
@@ -696,6 +768,11 @@ h3{font-size:1.15rem;line-height:1.2}
   .callout-robot{--pin-x:69%;--pin-line:62px}
   .callout-distribution{--pin-x:53%;--pin-line:40px}
   .callout-immersion{--pin-x:61%;--pin-line:66px}
+
+  .callout-immersion::before,
+  .callout-immersion::after{
+    display:none!important;
+  }
 
   /* Callout 01 references both transformer and cabinet.
      Add a second dot lower on the same guide line. */
@@ -738,7 +815,8 @@ h3{font-size:1.15rem;line-height:1.2}
   html{scroll-behavior:auto}*,*:before,*:after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
   .js [data-reveal]{opacity:1;transform:none}
   .hero-media{transform:none}
-  .platform-callout,.platform-leader{transition:none}}
+  .platform-callout,.platform-leader,
+  .platform-system-image,.platform-detail-image{transition:none}}
 
 /* Accessibility, active navigation and legal pages */
 main section[id]{scroll-margin-top:82px}
