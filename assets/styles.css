@@ -691,10 +691,10 @@ h3{font-size:1.15rem;line-height:1.2}
   }
 
   .callout-power{--pin-x:11.5%;--pin-line:126px}
-  .callout-service{--pin-x:34%;--pin-line:102px}
+  .callout-service{--pin-x:34%;--pin-line:65px}
   .callout-cooling{--pin-x:79%;--pin-line:112px}
-  .callout-robot{--pin-x:67.5%;--pin-line:78px}
-  .callout-distribution{--pin-x:53%;--pin-line:70px}
+  .callout-robot{--pin-x:68%;--pin-line:75px}
+  .callout-distribution{--pin-x:53%;--pin-line:25px}
   .callout-immersion{--pin-x:61%;--pin-line:66px}
 
   /* Callout 01 references both transformer and cabinet.
@@ -703,9 +703,9 @@ h3{font-size:1.15rem;line-height:1.2}
     box-shadow:
       0 0 0 3px rgba(19,90,151,.32),
       0 0 10px rgba(84,190,255,.5),
-      0 42px 0 0 #79d0ff,
-      0 42px 0 3px rgba(19,90,151,.32),
-      0 42px 10px 0 rgba(84,190,255,.45);
+      0 48px 0 0 #79d0ff,
+      0 48px 0 3px rgba(19,90,151,.32),
+      0 48px 10px 0 rgba(84,190,255,.45);
   }
 
   .platform-callout h3{font-size:.84rem}
