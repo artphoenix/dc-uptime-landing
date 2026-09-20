@@ -694,7 +694,7 @@ h3{font-size:1.15rem;line-height:1.2}
   .callout-service{--pin-x:38%;--pin-line:60px}
   .callout-cooling{--pin-x:79%;--pin-line:112px}
   .callout-robot{--pin-x:69%;--pin-line:62px}
-  .callout-distribution{--pin-x:53%;--pin-line:35px}
+  .callout-distribution{--pin-x:53%;--pin-line:40px}
   .callout-immersion{--pin-x:61%;--pin-line:66px}
 
   /* Callout 01 references both transformer and cabinet.
