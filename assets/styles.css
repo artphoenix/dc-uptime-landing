@@ -53,8 +53,55 @@ h3{font-size:1.15rem;line-height:1.2}
 
 /* Hero */
 .hero{min-height:780px;height:min(920px,100vh);position:relative;display:flex;align-items:center;overflow:hidden;background:#02070d}
-.hero-media{position:absolute;inset:0;background-image:url('images/hero.webp');background-size:cover;background-position:center center;transform:scale(1.025);animation:heroIn 1.6s cubic-bezier(.2,.75,.2,1) both}
-.hero-shade{position:absolute;inset:0;background:linear-gradient(90deg,rgba(1,7,13,.94) 0%,rgba(2,10,18,.82) 31%,rgba(4,12,20,.22) 64%,rgba(2,7,12,.18) 100%),linear-gradient(180deg,rgba(1,7,13,.3),rgba(1,7,13,.25) 60%,rgba(1,7,13,.72))}
+/*
+.hero-media{
+  position:absolute;
+  inset:0;
+  background-image:url('images/hero.webp');
+  background-size:cover;
+  background-position:center center;
+  transform:scale(1.025);
+  animation:heroIn 1.6s cubic-bezier(.2,.75,.2,1) both
+}
+*/
+.hero-media{
+  position:absolute;
+  inset:0;
+  background-image:url('images/hero.webp');
+  background-size:cover;
+  background-position:center 58%;
+  transform:none;
+  animation:none;
+}
+
+/*
+.hero-shade{
+  position:absolute;
+  inset:0;
+  background:
+    linear-gradient(90deg,rgba(1,7,13,.94) 0%,rgba(2,10,18,.82) 31%,rgba(4,12,20,.22) 64%,rgba(2,7,12,.18) 100%),
+    linear-gradient(180deg,rgba(1,7,13,.3),rgba(1,7,13,.25) 60%,rgba(1,7,13,.72))
+}
+*/
+.hero-shade{
+  position:absolute;
+  inset:0;
+  background:
+    linear-gradient(90deg,rgba(1,7,13,.78) 0%,rgba(2,10,18,.60) 31%,rgba(4,12,20,.14) 64%,rgba(2,7,12,.10) 100%),
+    linear-gradient(180deg,rgba(1,7,13,.12),rgba(1,7,13,.10) 60%,rgba(1,7,13,.38))
+}
+
+.hero-container-logo{
+  position:absolute;
+  z-index:1;
+  width:170px;
+  left:84px;
+  top:145px;
+  opacity:1;
+  pointer-events:none;
+  filter:drop-shadow(0 8px 20px rgba(0,0,0,.35));
+}
+
 .hero-inner{position:relative;z-index:2;display:flex;justify-content:space-between;align-items:flex-end;padding-top:70px}
 .hero-copy{max-width:700px}
 .hero h1{font-size:clamp(3.5rem,6.6vw,7.2rem);line-height:.89;margin:0 0 34px;max-width:760px}
