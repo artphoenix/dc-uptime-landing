@@ -375,7 +375,11 @@ h3{font-size:1.15rem;line-height:1.2}
 .callout-service{left:24%;top:3%}
 .callout-cooling{right:3%;top:3%}
 .callout-robot{right:20%;bottom:4%}
-.callout-distribution{left:22%;bottom:4%}
+.callout-distribution{
+  left:19%;
+  bottom:4%;
+  width:340px;
+}
 .callout-immersion{right:5%;bottom:3.5%}
 
 /* Animated leader lines */
