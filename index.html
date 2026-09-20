@@ -124,66 +124,80 @@
           <p>Integrated power, immersion compute, dry heat rejection, service stations and automation in a repeatable architecture.</p>
         </div>
 
-        <div class="platform-stage">
-          <div class="platform-image-wrap" data-reveal>
-            <div class="platform-glow" aria-hidden="true"></div>
-            <img
-              class="platform-system-image"
-              src="assets/images/platform-system.png"
-              width="1232"
-              height="693"
-              alt="DC Uptime platform with site power, two service stations, two immersion compute trenches, two dry cooler arrays and rail-based robotic maintenance"
-              loading="lazy">
-          </div>
+        <div class="platform-scroll" data-platform-scroll>
+          <div class="platform-sticky">
+            <div class="platform-image-wrap">
+              <div class="platform-glow" aria-hidden="true"></div>
 
-          <div class="platform-callouts" aria-label="DC Uptime platform components">
-            <article class="platform-callout" data-reveal>
-              <span class="callout-number">01</span>
-              <div>
-                <h3>Site Power &amp; Network</h3>
-                <p>LV power and fiber connect the site to the DC Uptime platform.</p>
-              </div>
-            </article>
+              <img
+                class="platform-system-image"
+                src="assets/images/platform-system.png"
+                width="1232"
+                height="693"
+                alt="DC Uptime platform with site power, two service stations, two immersion compute trenches, two dry cooler arrays and rail-based robotic maintenance"
+                loading="lazy">
 
-            <article class="platform-callout" data-reveal>
-              <span class="callout-number">02</span>
-              <div>
-                <h3>Service Station</h3>
-                <p>Power conversion and distribution, controls, monitoring, network aggregation, and the operations &amp; maintenance hub.</p>
-              </div>
-            </article>
+              <svg class="platform-leaders" viewBox="0 0 1000 600" preserveAspectRatio="none" aria-hidden="true">
+                <path class="platform-leader" data-platform-leader="1" d="M190 122 L150 205" />
+                <path class="platform-leader" data-platform-leader="2" d="M365 95 L342 245" />
+                <path class="platform-leader" data-platform-leader="3" d="M690 90 L735 150" />
+                <path class="platform-leader" data-platform-leader="4" d="M846 250 L725 275" />
+                <path class="platform-leader" data-platform-leader="5" d="M325 515 L420 405" />
+                <path class="platform-leader" data-platform-leader="6" d="M755 505 L680 420" />
+              </svg>
 
-            <article class="platform-callout" data-reveal>
-              <span class="callout-number">03</span>
-              <div>
-                <h3>Dry Cooler Array</h3>
-                <p>Closed secondary loop with water-free heat rejection.</p>
-              </div>
-            </article>
+              <article class="platform-callout callout-power" data-platform-callout="1">
+                <span class="callout-number">01</span>
+                <div>
+                  <h3>Site Power &amp; Network</h3>
+                  <p>Utility power and fiber connect directly to the platform.</p>
+                </div>
+              </article>
 
-            <article class="platform-callout" data-reveal>
-              <span class="callout-number">04</span>
-              <div>
-                <h3>Automated Maintenance</h3>
-                <p>Rail-based robotic system integrated with each compute trench.</p>
-              </div>
-            </article>
+              <article class="platform-callout callout-service" data-platform-callout="2">
+                <span class="callout-number">02</span>
+                <div>
+                  <h3>Service Station</h3>
+                  <p>Power conversion, controls, network aggregation and maintenance hub.</p>
+                </div>
+              </article>
 
-            <article class="platform-callout" data-reveal>
-              <span class="callout-number">05</span>
-              <div>
-                <h3>Distribution to Immersion Modules</h3>
-                <p>800 VDC or 400–480 VAC 3-phase power, network and controls with redundant pathways.</p>
-              </div>
-            </article>
+              <article class="platform-callout callout-cooling" data-platform-callout="3">
+                <span class="callout-number">03</span>
+                <div>
+                  <h3>Dry Cooler Array</h3>
+                  <p>Closed secondary loop with water-free heat rejection.</p>
+                </div>
+              </article>
 
-            <article class="platform-callout" data-reveal>
-              <span class="callout-number">06</span>
-              <div>
-                <h3>Immersion Compute Modules</h3>
-                <p>Single-phase dielectric immersion in trench-integrated horizontal 52U-sized racks with independent fluid volumes and internal liquid-to-liquid heat exchangers.</p>
+              <article class="platform-callout callout-robot" data-platform-callout="4">
+                <span class="callout-number">04</span>
+                <div>
+                  <h3>Automated Maintenance</h3>
+                  <p>Rail-based robotic service integrated with each compute trench.</p>
+                </div>
+              </article>
+
+              <article class="platform-callout callout-distribution" data-platform-callout="5">
+                <span class="callout-number">05</span>
+                <div>
+                  <h3>Power &amp; Network Distribution</h3>
+                  <p>Power, network and controls distributed through redundant pathways.</p>
+                </div>
+              </article>
+
+              <article class="platform-callout callout-immersion" data-platform-callout="6">
+                <span class="callout-number">06</span>
+                <div>
+                  <h3>Immersion Compute Modules</h3>
+                  <p>High-density compute in independent trench-integrated immersion modules.</p>
+                </div>
+              </article>
+
+              <div class="platform-progress" aria-hidden="true">
+                <span class="platform-progress-fill"></span>
               </div>
-            </article>
+            </div>
           </div>
         </div>
       </div>
@@ -341,6 +355,60 @@
     </div>
     <div class="shell footer-bottom"><span>© 2026 DC Uptime. All rights reserved.</span></div>
   </footer>
+
+  <script>
+    (() => {
+      const region = document.querySelector('[data-platform-scroll]');
+      if (!region) return;
+
+      const callouts = [...region.querySelectorAll('[data-platform-callout]')];
+      const leaders = [...region.querySelectorAll('[data-platform-leader]')];
+      const progressFill = region.querySelector('.platform-progress-fill');
+      const thresholds = [0.04, 0.18, 0.33, 0.48, 0.64, 0.80];
+
+      const clamp = (value, min, max) => Math.min(max, Math.max(min, value));
+
+      function updatePlatformStory() {
+        const rect = region.getBoundingClientRect();
+        const travel = Math.max(1, rect.height - window.innerHeight);
+        const progress = clamp(-rect.top / travel, 0, 1);
+        const mobile = window.matchMedia('(max-width: 840px)').matches;
+
+        if (progressFill) {
+          progressFill.style.transform = `scaleX(${progress})`;
+        }
+
+        if (mobile) {
+          const activeIndex = clamp(Math.floor(progress * callouts.length), 0, callouts.length - 1);
+          callouts.forEach((callout, index) => {
+            callout.classList.toggle('is-visible', index === activeIndex);
+          });
+          leaders.forEach((leader) => leader.classList.remove('is-visible'));
+        } else {
+          callouts.forEach((callout, index) => {
+            callout.classList.toggle('is-visible', progress >= thresholds[index]);
+          });
+          leaders.forEach((leader, index) => {
+            leader.classList.toggle('is-visible', progress >= thresholds[index]);
+          });
+        }
+      }
+
+      let ticking = false;
+      const requestUpdate = () => {
+        if (ticking) return;
+        ticking = true;
+        requestAnimationFrame(() => {
+          updatePlatformStory();
+          ticking = false;
+        });
+      };
+
+      window.addEventListener('scroll', requestUpdate, { passive: true });
+      window.addEventListener('resize', requestUpdate);
+      updatePlatformStory();
+    })();
+  </script>
 
   <script src="assets/site.js" defer></script>
 </body>
