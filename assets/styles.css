@@ -57,7 +57,6 @@ h3{font-size:1.15rem;line-height:1.2}
 .hero-shade{position:absolute;inset:0;background:linear-gradient(90deg,rgba(1,7,13,.94) 0%,rgba(2,10,18,.82) 31%,rgba(4,12,20,.22) 64%,rgba(2,7,12,.18) 100%),linear-gradient(180deg,rgba(1,7,13,.3),rgba(1,7,13,.25) 60%,rgba(1,7,13,.72))}
 .hero-inner{position:relative;z-index:2;display:flex;justify-content:space-between;align-items:flex-end;padding-top:70px}
 .hero-copy{max-width:700px}
-.eyebrow{font-size:.78rem;text-transform:uppercase;letter-spacing:.18em;color:#73c8ff;font-weight:800;margin-bottom:20px}
 .hero h1{font-size:clamp(3.5rem,6.6vw,7.2rem);line-height:.89;margin:0 0 34px;max-width:760px}
 .hero h1 span{color:#1680ff}
 .button{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:50px;padding:0 22px;border-radius:10px;font-weight:750;border:0;transition:transform .2s,box-shadow .2s,background .2s}
