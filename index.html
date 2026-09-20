@@ -137,6 +137,14 @@
                 alt="DC Uptime platform with site power, two service stations, two immersion compute trenches, two dry cooler arrays and rail-based robotic maintenance"
                 loading="lazy">
 
+              <img
+                class="platform-detail-image"
+                src="assets/images/immersion-module-detail.png"
+                width="1186"
+                height="696"
+                alt="Close-up of a DC Uptime immersion compute module with submerged servers and internal heat exchanger"
+                loading="lazy">
+
               <svg class="platform-leaders" viewBox="0 0 1000 600" preserveAspectRatio="none" aria-hidden="true">
                 <path class="platform-leader" data-platform-leader="1" d="M190 122 L150 205" />
                 <path class="platform-leader" data-platform-leader="2" d="M365 95 L342 245" />
@@ -364,6 +372,7 @@
       const callouts = [...region.querySelectorAll('[data-platform-callout]')];
       const leaders = [...region.querySelectorAll('[data-platform-leader]')];
       const progressFill = region.querySelector('.platform-progress-fill');
+      const imageWrap = region.querySelector('.platform-image-wrap');
       const thresholds = [0.04, 0.18, 0.33, 0.48, 0.64, 0.80];
 
       const clamp = (value, min, max) => Math.min(max, Math.max(min, value));
@@ -399,6 +408,10 @@
             callout.classList.toggle('is-visible', index === activeIndex);
           });
 
+          if (imageWrap) {
+            imageWrap.classList.toggle('detail-active', activeIndex === 5);
+          }
+
           leaders.forEach((leader) => leader.classList.remove('is-visible'));
         } else {
           callouts.forEach((callout, index) => {
@@ -407,6 +420,10 @@
           leaders.forEach((leader, index) => {
             leader.classList.toggle('is-visible', progress >= thresholds[index]);
           });
+
+          if (imageWrap) {
+            imageWrap.classList.toggle('detail-active', progress >= thresholds[5]);
+          }
         }
       }
 
