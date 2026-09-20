@@ -281,6 +281,13 @@ h3{font-size:1.15rem;line-height:1.2}
   transform:scale(1);
 }
 
+/* Hide ALL overview leader lines during the immersion-module close-up.
+   The detail image itself is now the visual reference for callout 06. */
+.platform-image-wrap.detail-active .platform-leader{
+  opacity:0!important;
+  visibility:hidden;
+}
+
 /* Once we move into the immersion-module close-up, clear the old system
    callouts so the detailed module remains easy to read. */
 .platform-image-wrap.detail-active .platform-callout:not(.callout-immersion){
