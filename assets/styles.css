@@ -416,7 +416,8 @@ h3{font-size:1.15rem;line-height:1.2}
   .shell{width:min(calc(100% - 32px),var(--shell))}
   .site-header.scrolled{background:rgba(3,10,18,.96)}
   .header-inner{height:72px;grid-template-columns:150px 1fr auto}
-  .brand{width:140px}.menu-toggle{display:flex;justify-self:end}
+  .brand{width:140px}
+  .menu-toggle{display:flex;justify-self:end}
   .site-nav{
     position:fixed;
     top:72px;
@@ -429,27 +430,144 @@ h3{font-size:1.15rem;line-height:1.2}
     background:rgba(3,13,23,.97);
     border:1px solid rgba(88,180,255,.24);
     border-radius:14px;
-    box-shadow:0 20px 50px rgba(0,0,0,.35)}
+    box-shadow:0 20px 50px rgba(0,0,0,.35)
+  }
   .site-nav.open{display:flex}
   .site-nav a{padding:12px}
   .header-cta{display:none}
-  .hero{height:auto;min-height:760px}.hero-inner{grid-template-columns:1fr;align-items:center;width:min(calc(100% - 32px),var(--shell))}
+
+  .hero{height:auto;min-height:760px}
+  .hero-inner{
+    grid-template-columns:1fr;
+    align-items:center;
+    width:min(calc(100% - 32px),var(--shell))
+  }
   .hero-side-note{display:none}
-  .hero-media{
-    background-position:62% top}
-  .mission-grid,.problem-heading,.section-heading-row,.robotics-grid,.contact-grid{grid-template-columns:1fr;gap:34px}
+  .hero-media{background-position:62% top}
+
+  .mission-grid,
+  .problem-heading,
+  .section-heading-row,
+  .robotics-grid,
+  .contact-grid{
+    grid-template-columns:1fr;
+    gap:34px
+  }
+
   .mission-note{justify-self:start}
   .recognition{grid-template-columns:60px 1fr}
   .recognition-copy{grid-column:1/-1}
   .recognition-link{grid-column:1/-1;text-align:center}
   .problem-grid{grid-template-columns:1fr}
-  .platform{padding:85px 0}
+
+  /* Mobile platform story:
+     full system visible, sticky image, one callout at a time. */
+  .platform{padding:85px 0 0}
+
+  .platform-scroll{
+    height:340vh;
+    min-height:2200px;
+  }
+
+  .platform-sticky{
+    top:76px;
+    height:calc(100svh - 88px);
+    min-height:540px;
+    align-items:center;
+  }
+
+  .platform-image-wrap{
+    width:100%;
+    height:min(72svh,640px);
+    min-height:500px;
+    max-height:none;
+    aspect-ratio:auto;
+    border-radius:18px;
+    overflow:hidden;
+  }
+
+  /* Show the complete platform image instead of cropping it. */
+  .platform-system-image{
+    left:2%;
+    top:9%;
+    width:96%;
+    height:auto;
+    max-height:58%;
+    object-fit:contain;
+    object-position:center top;
+  }
+
+  .platform-glow{
+    inset:8% 2% 28%;
+  }
+
+  /* Leader lines are too busy on a phone. */
+  .platform-leaders{display:none}
+
+  /* On mobile, callouts share one fixed location.
+     display:none guarantees they can never stack/interfere. */
+  .platform-callout{
+    display:none;
+    left:12px!important;
+    right:12px!important;
+    top:auto!important;
+    bottom:28px!important;
+    width:auto;
+    max-width:none;
+    grid-template-columns:34px 1fr;
+    gap:11px;
+    padding:14px 15px;
+    opacity:0;
+    transform:translateY(10px);
+    backdrop-filter:blur(14px);
+    background:linear-gradient(
+      145deg,
+      rgba(5,24,42,.97),
+      rgba(3,15,27,.96)
+    );
+  }
+
+  .platform-callout.is-visible{
+    display:grid;
+    opacity:1;
+    transform:none;
+  }
+
+  .platform-callout h3{
+    font-size:.94rem;
+    margin-bottom:5px;
+  }
+
+  .platform-callout p{
+    font-size:.74rem;
+    line-height:1.42;
+  }
+
+  .callout-number{
+    width:32px;
+    height:32px;
+    font-size:.65rem;
+  }
+
+  .platform-progress{
+    left:12px;
+    right:12px;
+    bottom:12px;
+  }
+
   .robotics{padding:85px 0}
   .steps{grid-template-columns:repeat(2,1fr)}
   .metric-grid{grid-template-columns:1fr 1fr}
-  .metric:nth-child(n){border-right:1px solid rgba(88,180,255,.2);border-bottom:1px solid rgba(88,180,255,.2)}
+  .metric:nth-child(n){
+    border-right:1px solid rgba(88,180,255,.2);
+    border-bottom:1px solid rgba(88,180,255,.2)
+  }
   .metric:nth-child(2n){border-right:0}
-  .metric:last-child{grid-column:1/-1;border-bottom:0;border-right:0}
+  .metric:last-child{
+    grid-column:1/-1;
+    border-bottom:0;
+    border-right:0
+  }
   .traction-grid{grid-template-columns:1fr}
   .follow-inner{grid-template-columns:1fr;justify-items:start}
   .form-grid{grid-template-columns:1fr}
@@ -461,15 +579,61 @@ h3{font-size:1.15rem;line-height:1.2}
 
 @media (max-width:540px){
   h2{font-size:2.25rem}
+
   .hero{min-height:700px}
   .hero h1{font-size:3.55rem}
   .hero-media{background-position:65% top}
+
   .mission{padding-top:75px}
   .mission-grid{padding-bottom:60px}
   .recognition{padding:18px;gap:14px}
   .recognition-title strong{font-size:1.16rem}
   .problem{padding:78px 0}
-  .platform-frame{padding:7px;border-radius:14px}
+
+  /* iPhone / narrow-phone platform tuning */
+  .platform-scroll{
+    height:360vh;
+    min-height:2350px;
+  }
+
+  .platform-sticky{
+    top:70px;
+    height:calc(100svh - 80px);
+    min-height:500px;
+  }
+
+  .platform-image-wrap{
+    height:min(70svh,590px);
+    min-height:470px;
+    border-radius:15px;
+  }
+
+  .platform-system-image{
+    left:1%;
+    top:8%;
+    width:98%;
+    height:auto;
+    max-height:55%;
+  }
+
+  .platform-callout{
+    left:9px!important;
+    right:9px!important;
+    bottom:24px!important;
+    padding:12px 13px;
+    grid-template-columns:31px 1fr;
+  }
+
+  .platform-callout h3{font-size:.89rem}
+  .platform-callout p{font-size:.70rem}
+  .callout-number{width:29px;height:29px}
+
+  .platform-progress{
+    left:10px;
+    right:10px;
+    bottom:9px;
+  }
+
   .steps{grid-template-columns:1fr}
   .step-visual{height:155px}
   .metric-grid{grid-template-columns:1fr}
@@ -479,7 +643,10 @@ h3{font-size:1.15rem;line-height:1.2}
   .follow{padding:58px 0}
   .contact{padding:78px 0}
   .contact-form{padding:19px}
-  .form-footer{align-items:flex-start;flex-direction:column}
+  .form-footer{
+    align-items:flex-start;
+    flex-direction:column
+  }
   .form-footer .button{width:100%}
 }
 
