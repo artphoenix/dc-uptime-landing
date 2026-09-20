@@ -461,70 +461,80 @@ h3{font-size:1.15rem;line-height:1.2}
   .problem-grid{grid-template-columns:1fr}
 
   /* Mobile platform story:
-     full system visible, sticky image, one callout at a time. */
+     show the full system clearly first, then reveal ONE callout below it. */
   .platform{padding:85px 0 0}
 
   .platform-scroll{
-    height:340vh;
-    min-height:2200px;
+    height:360vh;
+    min-height:2350px;
   }
 
   .platform-sticky{
     top:76px;
     height:calc(100svh - 88px);
     min-height:540px;
+    display:flex;
     align-items:center;
+    justify-content:center;
   }
 
+  /* Keep the platform wide and fully visible on a phone.
+     The extra bottom margin creates a dedicated callout area BELOW the image. */
   .platform-image-wrap{
-    width:100%;
-    height:min(72svh,640px);
-    min-height:500px;
+    width:calc(100% + 12px);
+    height:auto;
+    min-height:0;
     max-height:none;
-    aspect-ratio:auto;
+    aspect-ratio:1232 / 693;
+    margin-left:-6px;
+    margin-bottom:145px;
     border-radius:18px;
-    overflow:hidden;
+    overflow:visible;
   }
 
-  /* Show the complete platform image instead of cropping it. */
+  /* The image itself now fills the available width instead of being
+     constrained to roughly half of a tall container. */
   .platform-system-image{
-    left:2%;
-    top:9%;
-    width:96%;
+    position:relative;
+    left:auto;
+    top:auto;
+    width:100%;
     height:auto;
-    max-height:58%;
+    max-height:none;
     object-fit:contain;
-    object-position:center top;
+    object-position:center;
   }
 
   .platform-glow{
-    inset:8% 2% 28%;
+    inset:5%;
   }
 
-  /* Leader lines are too busy on a phone. */
+  /* Leader lines are intentionally removed on mobile. */
   .platform-leaders{display:none}
 
-  /* On mobile, callouts share one fixed location.
-     display:none guarantees they can never stack/interfere. */
+  /* Mobile callouts no longer cover the product.
+     They occupy one shared slot directly BELOW the image. */
   .platform-callout{
     display:none;
-    left:12px!important;
-    right:12px!important;
-    top:auto!important;
-    bottom:28px!important;
-    width:auto;
+    left:0!important;
+    right:0!important;
+    top:calc(100% + 14px)!important;
+    bottom:auto!important;
+    width:100%;
     max-width:none;
-    grid-template-columns:34px 1fr;
-    gap:11px;
-    padding:14px 15px;
+    grid-template-columns:31px 1fr;
+    gap:10px;
+    padding:11px 13px;
+    border-radius:12px;
     opacity:0;
-    transform:translateY(10px);
+    transform:translateY(8px);
     backdrop-filter:blur(14px);
     background:linear-gradient(
       145deg,
       rgba(5,24,42,.97),
       rgba(3,15,27,.96)
     );
+    overflow:visible;
   }
 
   .platform-callout.is-visible{
@@ -533,26 +543,67 @@ h3{font-size:1.15rem;line-height:1.2}
     transform:none;
   }
 
+  /* On phones, each callout gets its own dashed pointer line that
+     reaches up into the image to indicate the referenced component. */
+  .platform-callout::before{
+    content:"";
+    position:absolute;
+    left:var(--pin-x,50%);
+    top:calc(var(--pin-line,84px) * -1);
+    height:var(--pin-line,84px);
+    border-left:2px dashed rgba(103,196,255,.78);
+    opacity:0;
+    pointer-events:none;
+    filter:drop-shadow(0 0 6px rgba(89,190,255,.28));
+  }
+
+  .platform-callout::after{
+    content:"";
+    position:absolute;
+    left:calc(var(--pin-x,50%) - 4px);
+    top:calc(var(--pin-line,84px) * -1 - 4px);
+    width:8px;
+    height:8px;
+    border-radius:50%;
+    background:#79d0ff;
+    box-shadow:0 0 0 3px rgba(19,90,151,.32),0 0 10px rgba(84,190,255,.5);
+    opacity:0;
+    pointer-events:none;
+  }
+
+  .platform-callout.is-visible::before,
+  .platform-callout.is-visible::after{
+    opacity:1;
+  }
+
+  .callout-power{--pin-x:13%;--pin-line:112px}
+  .callout-service{--pin-x:35%;--pin-line:98px}
+  .callout-cooling{--pin-x:79%;--pin-line:118px}
+  .callout-robot{--pin-x:71%;--pin-line:82px}
+  .callout-distribution{--pin-x:46%;--pin-line:76px}
+  .callout-immersion{--pin-x:62%;--pin-line:70px}
+
   .platform-callout h3{
-    font-size:.94rem;
-    margin-bottom:5px;
+    font-size:.88rem;
+    line-height:1.16;
+    margin-bottom:4px;
   }
 
   .platform-callout p{
-    font-size:.74rem;
-    line-height:1.42;
+    font-size:.70rem;
+    line-height:1.38;
   }
 
   .callout-number{
-    width:32px;
-    height:32px;
-    font-size:.65rem;
+    width:29px;
+    height:29px;
+    font-size:.62rem;
   }
 
   .platform-progress{
     left:12px;
     right:12px;
-    bottom:12px;
+    bottom:9px;
   }
 
   .robotics{padding:85px 0}
@@ -592,8 +643,8 @@ h3{font-size:1.15rem;line-height:1.2}
 
   /* iPhone / narrow-phone platform tuning */
   .platform-scroll{
-    height:360vh;
-    min-height:2350px;
+    height:375vh;
+    min-height:2450px;
   }
 
   .platform-sticky{
@@ -602,36 +653,49 @@ h3{font-size:1.15rem;line-height:1.2}
     min-height:500px;
   }
 
+  /* Nearly edge-to-edge product view. */
   .platform-image-wrap{
-    height:min(70svh,590px);
-    min-height:470px;
+    width:calc(100% + 20px);
+    margin-left:-10px;
+    margin-bottom:138px;
+    aspect-ratio:1232 / 693;
     border-radius:15px;
   }
 
   .platform-system-image{
-    left:1%;
-    top:8%;
-    width:98%;
+    position:relative;
+    left:auto;
+    top:auto;
+    width:100%;
     height:auto;
-    max-height:55%;
+    max-height:none;
   }
 
+  /* Compact card below the image, never over it. */
   .platform-callout{
-    left:9px!important;
-    right:9px!important;
-    bottom:24px!important;
-    padding:12px 13px;
-    grid-template-columns:31px 1fr;
+    left:4px!important;
+    right:4px!important;
+    top:calc(100% + 12px)!important;
+    bottom:auto!important;
+    padding:10px 11px;
+    grid-template-columns:29px 1fr;
   }
 
-  .platform-callout h3{font-size:.89rem}
-  .platform-callout p{font-size:.70rem}
-  .callout-number{width:29px;height:29px}
+  .callout-power{--pin-x:12%;--pin-line:106px}
+  .callout-service{--pin-x:34%;--pin-line:93px}
+  .callout-cooling{--pin-x:79%;--pin-line:112px}
+  .callout-robot{--pin-x:71%;--pin-line:78px}
+  .callout-distribution{--pin-x:45%;--pin-line:72px}
+  .callout-immersion{--pin-x:61%;--pin-line:66px}
+
+  .platform-callout h3{font-size:.84rem}
+  .platform-callout p{font-size:.67rem;line-height:1.36}
+  .callout-number{width:27px;height:27px;font-size:.60rem}
 
   .platform-progress{
     left:10px;
     right:10px;
-    bottom:9px;
+    bottom:7px;
   }
 
   .steps{grid-template-columns:1fr}
