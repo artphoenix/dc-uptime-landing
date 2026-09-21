@@ -678,7 +678,7 @@ h3{font-size:1.15rem;line-height:1.2}
 /* Benefits */
 .benefits{
   --benefit-card-bottom-space:18px; /* smaller = upper-card text moves down; larger = moves up */
-  --price-content-y:25px; /* positive = $3M/MW panel content moves down; negative = moves up */
+  --price-content-y:50px; /* positive = $3M/MW panel content moves down; negative = moves up */
   position:relative;
   overflow:hidden;
   padding:88px 0 84px;
