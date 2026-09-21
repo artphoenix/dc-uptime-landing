@@ -733,14 +733,14 @@ h3{font-size:1.15rem;line-height:1.2}
   gap:22px;
 }
 
+/* All four benefit cards use the same internal row geometry so text baselines align. */
 .metric{
   position:relative;
   min-height:256px;
-  padding:30px 32px 24px;
-  display:flex;
-  flex-direction:column;
-  justify-content:flex-end;
-  gap:10px;
+  padding:30px 28px 24px;
+  display:grid;
+  grid-template-rows:92px 1fr 34px 48px;
+  row-gap:10px;
   border:1px solid #d9e6f5;
   border-radius:22px;
   background:
@@ -752,8 +752,6 @@ h3{font-size:1.15rem;line-height:1.2}
 
 .metric:before{display:none}
 
-.metric strong,.metric span{max-width:100%}
-
 .metric-icon{
   position:relative;
   z-index:1;
@@ -764,7 +762,8 @@ h3{font-size:1.15rem;line-height:1.2}
   border-radius:50%;
   background:#e8f0fb;
   color:#1f74f3;
-  margin-bottom:auto;
+  margin:0;
+  align-self:start;
 }
 
 .metric-icon svg,
@@ -779,30 +778,28 @@ h3{font-size:1.15rem;line-height:1.2}
   position:relative;
   z-index:1;
   margin:0;
+  width:100%;
   color:#06153a;
   font-size:clamp(1.42rem,1.60vw,1.82rem);
   font-weight:800;
   line-height:1.04;
   letter-spacing:-.055em;
   white-space:nowrap;
+  align-self:end;
 }
-
 
 .metric span{
   position:relative;
   z-index:1;
   display:block;
+  margin:0;
+  width:100%;
+  max-width:none;
   color:#66758f;
   font-size:1rem;
   line-height:1.28;
-  max-width:15ch;
+  align-self:start;
 }
-
-
-.metric-pue strong{
-  white-space:nowrap;
-}
-
 
 .metric-price{
   grid-column:1 / -1;
@@ -892,8 +889,16 @@ h3{font-size:1.15rem;line-height:1.2}
   .benefits-heading{margin-bottom:30px}
   .benefits-heading h2{font-size:clamp(2.6rem,11vw,4rem)}
   .metric-grid{grid-template-columns:1fr;gap:18px}
-  .metric{min-height:220px;padding:28px 24px 24px}
-  .metric-pue strong{white-space:normal;font-size:clamp(1.9rem,8vw,2.2rem)}
+  .metric{
+    min-height:220px;
+    padding:28px 24px 24px;
+    display:flex;
+    flex-direction:column;
+    justify-content:flex-end;
+    gap:10px;
+  }
+  .metric-icon{margin-bottom:auto}
+  .metric strong{white-space:normal;font-size:clamp(1.9rem,8vw,2.2rem)}
   .metric-price{grid-template-columns:1fr;gap:22px;padding:28px 24px;min-height:auto;background:linear-gradient(90deg,rgba(242,247,252,.98),rgba(237,246,255,.92)), url("images/benefits-cost-bg.png") right center / cover no-repeat}
   .metric-price-icon{border-right:0;border-bottom:1px solid rgba(190,211,236,.9);padding-bottom:18px;min-height:auto}
   .metric-price-icon img{width:128px}
