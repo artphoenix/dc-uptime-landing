@@ -744,7 +744,7 @@ h3{font-size:1.15rem;line-height:1.2}
   border:1px solid #d9e6f5;
   border-radius:22px;
   background:
-    radial-gradient(circle at 86% 18%,rgba(220,229,240,.85) 0 20%, transparent 21%),
+    url("images/benefit-card-bg-v2.png") center / 100% 100% no-repeat,
     linear-gradient(180deg,rgba(255,255,255,.84),rgba(252,253,255,.95));
   box-shadow:0 8px 24px rgba(42,82,140,.04);
   overflow:hidden;
@@ -794,9 +794,9 @@ h3{font-size:1.15rem;line-height:1.2}
 }
 
 .metric-pue strong{
-  font-size:clamp(1.65rem,1.8vw,2.08rem);
+  font-size:clamp(1.42rem,1.60vw,1.82rem);
   line-height:1.04;
-  letter-spacing:-.045em;
+  letter-spacing:-.055em;
   white-space:nowrap;
 }
 
@@ -805,7 +805,7 @@ h3{font-size:1.15rem;line-height:1.2}
   min-height:286px;
   padding:34px 44px;
   display:grid;
-  grid-template-columns:240px 1.35fr 0.75fr;
+  grid-template-columns:240px minmax(0,1fr) 190px;
   align-items:center;
   gap:30px;
   background:
@@ -838,14 +838,16 @@ h3{font-size:1.15rem;line-height:1.2}
   display:flex;
   flex-direction:column;
   gap:14px;
+  min-width:0;
 }
 
 .metric-price strong{
   color:#2270f2;
   font-weight:800;
-  font-size:clamp(4.9rem,7.1vw,7.5rem);
+  font-size:clamp(4.15rem,6.0vw,6.4rem);
   line-height:.88;
-  letter-spacing:-.078em;
+  letter-spacing:-.072em;
+  white-space:nowrap;
 }
 
 .metric-price .metric-price-label{
