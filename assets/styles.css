@@ -428,9 +428,100 @@ h3{font-size:1.15rem;line-height:1.2}
 }
 
 /* Robotics */
-.robotics{padding:112px 0;border-top:1px solid rgba(88,180,255,.22);border-bottom:1px solid rgba(88,180,255,.18)}
-.robotics-grid{display:grid;grid-template-columns:.88fr 1.12fr;gap:60px;align-items:center}.robotics-copy h2{font-size:clamp(2.5rem,4.4vw,4.5rem);margin-bottom:20px}.lead{font-size:1.05rem;color:#a9bacb;max-width:570px}.feature-list{padding:0;margin:34px 0 0;list-style:none;display:grid;gap:13px}.feature-list li{display:grid;grid-template-columns:42px 1fr;gap:13px;align-items:center;color:#dbe8f3}.feature-list li span{display:grid;place-items:center;width:34px;height:34px;border-radius:50%;border:1px solid rgba(88,180,255,.45);color:#64bfff;font-size:.72rem;font-weight:800}
-.robotics-visual{margin:0;position:relative;border-radius:20px;overflow:hidden;border:1px solid rgba(88,180,255,.28);box-shadow:var(--shadow)}.robotics-visual img{width:100%;aspect-ratio:16/9;object-fit:cover}.robotics-visual:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 55%,rgba(2,9,16,.82));pointer-events:none}.robotics-visual figcaption{position:absolute;z-index:2;right:22px;bottom:18px;text-transform:uppercase;letter-spacing:.14em;font-size:.72rem;color:#75caff;font-weight:800}
+.robotics{
+  padding:82px 0;
+  border-top:1px solid rgba(88,180,255,.22);
+  border-bottom:1px solid rgba(88,180,255,.18);
+}
+
+.robotics-grid{
+  display:grid;
+  grid-template-columns:.88fr 1.12fr;
+  gap:48px;
+  align-items:center;
+}
+
+.robotics-copy h2{
+  font-size:clamp(2.5rem,4.4vw,4.5rem);
+  margin-bottom:20px;
+}
+
+.lead{
+  font-size:1.05rem;
+  color:#a9bacb;
+  max-width:570px;
+}
+
+.feature-list{
+  padding:0;
+  margin:34px 0 0;
+  list-style:none;
+  display:grid;
+  gap:13px;
+}
+
+.feature-list li{
+  display:grid;
+  grid-template-columns:42px 1fr;
+  gap:13px;
+  align-items:center;
+  color:#dbe8f3;
+}
+
+.feature-list li span{
+  display:grid;
+  place-items:center;
+  width:34px;
+  height:34px;
+  border-radius:50%;
+  border:1px solid rgba(88,180,255,.45);
+  color:#64bfff;
+  font-size:.72rem;
+  font-weight:800;
+}
+
+.robotics-visual{
+  margin:0;
+  position:relative;
+  border-radius:20px;
+  overflow:hidden;
+  border:1px solid rgba(88,180,255,.28);
+  box-shadow:var(--shadow);
+  background:#020a12;
+  max-height:520px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+.robotics-visual img{
+  width:100%;
+  height:auto;
+  max-height:520px;
+  aspect-ratio:auto;
+  object-fit:contain;
+  object-position:center;
+}
+
+.robotics-visual:after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:linear-gradient(180deg,transparent 65%,rgba(2,9,16,.72));
+  pointer-events:none;
+}
+
+.robotics-visual figcaption{
+  position:absolute;
+  z-index:2;
+  right:22px;
+  bottom:18px;
+  text-transform:uppercase;
+  letter-spacing:.14em;
+  font-size:.72rem;
+  color:#75caff;
+  font-weight:800;
+}
 
 /* How it works */
 .how{padding:106px 0;background:linear-gradient(180deg,#07192a,#061525)}
