@@ -677,6 +677,8 @@ h3{font-size:1.15rem;line-height:1.2}
 
 /* Benefits */
 .benefits{
+  --benefit-card-bottom-space:18px; /* smaller = upper-card text moves down; larger = moves up */
+  --price-content-y:14px; /* positive = $3M/MW panel content moves down; negative = moves up */
   position:relative;
   overflow:hidden;
   padding:88px 0 84px;
@@ -739,7 +741,7 @@ h3{font-size:1.15rem;line-height:1.2}
   min-height:256px;
   padding:30px 28px 24px;
   display:grid;
-  grid-template-rows:92px 1fr 34px 48px;
+  grid-template-rows:92px 1fr 34px var(--benefit-card-bottom-space);
   row-gap:10px;
   border:1px solid #d9e6f5;
   border-radius:22px;
@@ -818,7 +820,11 @@ h3{font-size:1.15rem;line-height:1.2}
 }
 
 .metric-price:before,.metric-price:after{display:none}
-.metric-price-icon,.metric-price-copy,.metric-price-sidecopy{position:relative;z-index:1}
+.metric-price-icon,.metric-price-copy,.metric-price-sidecopy{
+  position:relative;
+  z-index:1;
+  transform:translateY(var(--price-content-y));
+}
 
 .metric-price-icon{
   display:flex;
@@ -902,6 +908,7 @@ h3{font-size:1.15rem;line-height:1.2}
   .metric-price{grid-template-columns:1fr;gap:22px;padding:28px 24px;min-height:auto;background:linear-gradient(90deg,rgba(242,247,252,.98),rgba(237,246,255,.92)), url("images/benefits-cost-bg.png") right center / cover no-repeat}
   .metric-price-icon{border-right:0;border-bottom:1px solid rgba(190,211,236,.9);padding-bottom:18px;min-height:auto}
   .metric-price-icon img{width:128px}
+  .metric-price-icon,.metric-price-copy,.metric-price-sidecopy{transform:none}
   .metric-price-copy{text-align:center;align-items:center}
   .metric-price strong{font-size:clamp(3.25rem,13vw,5rem)}
   .disclaimer{text-align:center}
