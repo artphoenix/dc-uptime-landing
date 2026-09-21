@@ -679,20 +679,23 @@ h3{font-size:1.15rem;line-height:1.2}
 .benefits{
   position:relative;
   overflow:hidden;
-  padding:96px 0 88px;
+  padding:88px 0 84px;
   color:#081633;
   background:
-    linear-gradient(rgba(248,251,255,.50),rgba(244,249,255,.58)),
+    linear-gradient(rgba(250,252,255,.90),rgba(244,248,253,.92)),
     url("images/benefits-bg.webp") center / cover no-repeat;
-  border-top:1px solid rgba(178,202,233,.36);
-  border-bottom:1px solid rgba(178,202,233,.36);
+  border-top:1px solid rgba(181,204,232,.42);
+  border-bottom:1px solid rgba(181,204,232,.42);
 }
 
 .benefits:before{
   content:"";
   position:absolute;
   inset:0;
-  background:linear-gradient(180deg,rgba(255,255,255,.10),rgba(228,241,255,.05));
+  background:
+    radial-gradient(circle at 16% 80%,rgba(197,224,255,.17),transparent 20%),
+    radial-gradient(circle at 84% 12%,rgba(197,224,255,.18),transparent 18%),
+    linear-gradient(180deg,rgba(255,255,255,.26),rgba(236,245,255,.12));
   pointer-events:none;
 }
 
@@ -701,83 +704,28 @@ h3{font-size:1.15rem;line-height:1.2}
   position:absolute;
   inset:0;
   background:
-    linear-gradient(135deg,rgba(255,255,255,.55) 0%,transparent 20%),
-    radial-gradient(circle at 82% 70%,rgba(143,198,255,.15),transparent 20%);
+    linear-gradient(135deg,rgba(255,255,255,.22) 0%,transparent 18%),
+    linear-gradient(0deg,rgba(255,255,255,.08),rgba(255,255,255,.08));
   pointer-events:none;
 }
 
 .benefits .shell{position:relative;z-index:1}
-
-.benefits-frame{
-  position:relative;
-}
-
-.benefits-topline,
-.benefits-bottomline{
-  display:grid;
-  grid-template-columns:1fr auto 1fr;
-  align-items:center;
-  gap:24px;
-}
-
-.benefits-topline{margin-bottom:26px}
-.benefits-bottomline{margin-top:26px}
-
-.benefits-kicker-wrap{
-  display:flex;
-  align-items:center;
-  gap:18px;
-  justify-content:center;
-}
-
-.benefits-kicker{
-  margin:0;
-  color:#196fff;
-  font-size:.88rem;
-  font-weight:800;
-  letter-spacing:.28em;
-  text-transform:uppercase;
-}
-
-.benefits-kicker-line{
-  width:48px;
-  height:2px;
-  background:linear-gradient(90deg,rgba(25,111,255,.25),rgba(25,111,255,.65),rgba(25,111,255,.25));
-  border-radius:999px;
-}
-
-.benefits-sidecopy,
-.benefits-bottom-copy,
-.metric-price-sidecopy{
-  margin:0;
-  color:#8aa2c8;
-  font-size:.82rem;
-  font-weight:600;
-  letter-spacing:.25em;
-  line-height:1.55;
-  text-transform:uppercase;
-}
-
-.benefits-sidecopy-left{text-align:left}
-.benefits-sidecopy-right{text-align:right}
-.benefits-bottom-copy{justify-self:end;text-align:right}
+.benefits-frame{position:relative}
 
 .benefits-heading{
   text-align:center;
-  margin-bottom:40px;
+  margin-bottom:44px;
 }
 
 .benefits-heading h2{
   margin:0;
-  font-size:clamp(3.4rem,5.5vw,6.2rem);
-  line-height:.94;
-  letter-spacing:-.06em;
+  font-size:clamp(3.5rem,5.8vw,6.35rem);
+  line-height:.96;
+  letter-spacing:-.065em;
   color:#06153a;
 }
 
-.benefits-heading h2 span{
-  color:#1c79ff;
-}
+.benefits-heading h2 span{color:#2a78f6}
 
 .metric-grid{
   display:grid;
@@ -787,46 +735,42 @@ h3{font-size:1.15rem;line-height:1.2}
 
 .metric{
   position:relative;
-  min-height:268px;
-  padding:34px 34px 28px;
+  min-height:256px;
+  padding:30px 32px 24px;
   display:flex;
   flex-direction:column;
   justify-content:flex-end;
-  gap:12px;
-  border:1px solid #d9e7f6;
+  gap:10px;
+  border:1px solid #d9e6f5;
   border-radius:22px;
-  background:rgba(255,255,255,.88);
-  box-shadow:0 14px 34px rgba(26,62,114,.05);
+  background:
+    radial-gradient(circle at 86% 18%,rgba(220,229,240,.85) 0 20%, transparent 21%),
+    linear-gradient(180deg,rgba(255,255,255,.84),rgba(252,253,255,.95));
+  box-shadow:0 8px 24px rgba(42,82,140,.04);
   overflow:hidden;
 }
 
-.metric:before{
-  content:"";
-  position:absolute;
-  right:-38px;
-  top:-38px;
-  width:150px;
-  height:150px;
-  border-radius:50%;
-  background:rgba(219,232,247,.55);
-}
+.metric:before{display:none}
 
 .metric-icon{
   position:relative;
   z-index:1;
-  width:88px;
-  height:88px;
+  width:92px;
+  height:92px;
   display:grid;
   place-items:center;
   border-radius:50%;
-  background:#eaf2fc;
-  color:#1c79ff;
+  background:#e8f0fb;
+  color:#1f74f3;
   margin-bottom:auto;
 }
 
-.metric-icon svg{
-  width:44px;
-  height:44px;
+.metric-icon svg,
+.metric-icon img{
+  width:46px;
+  height:46px;
+  display:block;
+  object-fit:contain;
 }
 
 .metric strong{
@@ -834,60 +778,58 @@ h3{font-size:1.15rem;line-height:1.2}
   z-index:1;
   margin:0;
   color:#06153a;
-  font-size:clamp(1.9rem,2.3vw,2.6rem);
+  font-size:clamp(1.95rem,2.2vw,2.55rem);
+  font-weight:800;
   line-height:1.08;
-  letter-spacing:-.045em;
+  letter-spacing:-.05em;
 }
 
 .metric span{
   position:relative;
   z-index:1;
   display:block;
-  color:#65758f;
-  font-size:.98rem;
-  line-height:1.32;
+  color:#66758f;
+  font-size:1rem;
+  line-height:1.28;
+}
+
+.metric-pue strong{
+  font-size:clamp(1.65rem,1.8vw,2.08rem);
+  line-height:1.04;
+  letter-spacing:-.045em;
+  white-space:nowrap;
 }
 
 .metric-price{
   grid-column:1 / -1;
   min-height:286px;
-  padding:42px 44px;
+  padding:34px 44px;
   display:grid;
-  grid-template-columns:260px 1fr 260px;
+  grid-template-columns:240px 1.35fr 0.75fr;
   align-items:center;
-  gap:34px;
+  gap:30px;
   background:
-    linear-gradient(90deg,rgba(244,249,255,.98) 0%,rgba(244,249,255,.94) 52%,rgba(238,247,255,.64) 100%),
-    url("images/benefits-cost-bg.webp") right center / cover no-repeat;
-  border:1px solid #cae4ff;
-  box-shadow:0 16px 36px rgba(26,62,114,.06);
+    linear-gradient(90deg,rgba(245,248,252,.95) 0%,rgba(243,247,252,.88) 47%,rgba(238,246,255,.50) 100%),
+    url("images/benefits-cost-bg.png") right center / cover no-repeat;
+  border:1px solid #9fd2ff;
+  border-radius:24px;
+  box-shadow:0 12px 28px rgba(40,88,152,.04);
 }
 
-.metric-price:before{
-  content:"";
-  position:absolute;
-  inset:0;
-  background:linear-gradient(90deg,transparent 56%,rgba(255,255,255,.08));
-  pointer-events:none;
-}
-
-.metric-price:after{display:none}
-
-.metric-price-icon,
-.metric-price-copy,
-.metric-price-sidecopy{position:relative;z-index:1}
+.metric-price:before,.metric-price:after{display:none}
+.metric-price-icon,.metric-price-copy,.metric-price-sidecopy{position:relative;z-index:1}
 
 .metric-price-icon{
   display:flex;
   align-items:center;
   justify-content:center;
   min-height:146px;
-  border-right:1px solid rgba(190,211,236,.9);
+  border-right:1px solid rgba(173,203,234,.9);
 }
 
 .metric-price-icon img{
   display:block;
-  width:160px;
+  width:178px;
   height:auto;
   object-fit:contain;
 }
@@ -895,27 +837,36 @@ h3{font-size:1.15rem;line-height:1.2}
 .metric-price-copy{
   display:flex;
   flex-direction:column;
-  gap:10px;
+  gap:14px;
 }
 
 .metric-price strong{
-  color:#1c79ff;
-  font-size:clamp(4.2rem,7vw,7.5rem);
-  line-height:.92;
-  letter-spacing:-.07em;
+  color:#2270f2;
+  font-weight:800;
+  font-size:clamp(4.9rem,7.1vw,7.5rem);
+  line-height:.88;
+  letter-spacing:-.078em;
 }
 
 .metric-price .metric-price-label{
-  color:#717d92;
-  font-size:1.05rem;
-  line-height:1.15;
+  max-width:760px;
+  color:#6f7f98;
+  font-size:1.03rem;
+  line-height:1.28;
 }
 
 .metric-price-sidecopy{
   justify-self:end;
   text-align:left;
-  color:#86a0c7;
+  color:#7f98bf;
+  font-size:.82rem;
+  font-weight:600;
+  letter-spacing:.23em;
+  line-height:1.65;
+  text-transform:uppercase;
 }
+
+.benefits-bottomline{margin-top:24px}
 
 .disclaimer{
   margin:0;
@@ -925,29 +876,23 @@ h3{font-size:1.15rem;line-height:1.2}
 }
 
 @media (max-width:1180px){
-  .benefits-topline,.benefits-bottomline{grid-template-columns:1fr}
-  .benefits-sidecopy,.benefits-bottom-copy{text-align:center;justify-self:center}
-  .benefits-kicker-wrap{order:-1}
   .metric-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
   .metric-price{grid-column:1/-1;grid-template-columns:220px 1fr}
   .metric-price-sidecopy{display:none}
 }
 
 @media (max-width:840px){
-  .benefits{padding:78px 0 72px}
-  .benefits-topline{margin-bottom:20px}
-  .benefits-bottomline{margin-top:18px;gap:12px}
-  .benefits-sidecopy,.benefits-bottom-copy{display:none}
-  .benefits-heading{margin-bottom:28px}
+  .benefits{padding:76px 0 70px}
+  .benefits-heading{margin-bottom:30px}
   .benefits-heading h2{font-size:clamp(2.6rem,11vw,4rem)}
   .metric-grid{grid-template-columns:1fr;gap:18px}
   .metric{min-height:220px;padding:28px 24px 24px}
-  .metric-price{grid-template-columns:1fr;gap:22px;padding:28px 24px;min-height:auto}
-  .metric-price:before{width:44%;right:10px;top:10px;bottom:10px}
+  .metric-pue strong{white-space:normal;font-size:clamp(1.9rem,8vw,2.2rem)}
+  .metric-price{grid-template-columns:1fr;gap:22px;padding:28px 24px;min-height:auto;background:linear-gradient(90deg,rgba(242,247,252,.98),rgba(237,246,255,.92)), url("images/benefits-cost-bg.png") right center / cover no-repeat}
   .metric-price-icon{border-right:0;border-bottom:1px solid rgba(190,211,236,.9);padding-bottom:18px;min-height:auto}
   .metric-price-icon img{width:128px}
   .metric-price-copy{text-align:center;align-items:center}
-  .metric-price strong{font-size:clamp(3.2rem,13vw,4.9rem)}
+  .metric-price strong{font-size:clamp(3.25rem,13vw,5rem)}
   .disclaimer{text-align:center}
 }
 
