@@ -679,13 +679,13 @@ h3{font-size:1.15rem;line-height:1.2}
 .benefits{
   position:relative;
   overflow:hidden;
-  padding:105px 0 96px;
+  padding:120px 0 108px;
+  color:var(--ink);
   background:
-    radial-gradient(circle at 70% 42%,rgba(22,120,255,.18),transparent 34%),
-    radial-gradient(circle at 18% 78%,rgba(62,170,255,.08),transparent 28%),
-    linear-gradient(180deg,#03101c 0%,#020a13 100%);
-  border-top:1px solid rgba(88,180,255,.28);
-  border-bottom:1px solid rgba(88,180,255,.24);
+    radial-gradient(circle at 50% 15%,rgba(114,173,255,.14),transparent 28%),
+    linear-gradient(180deg,#f7f9fd 0%,#f3f7fc 100%);
+  border-top:1px solid rgba(151,184,222,.32);
+  border-bottom:1px solid rgba(151,184,222,.32);
 }
 
 .benefits:before{
@@ -693,10 +693,20 @@ h3{font-size:1.15rem;line-height:1.2}
   position:absolute;
   inset:0;
   background-image:
-    linear-gradient(rgba(76,162,226,.035) 1px,transparent 1px),
-    linear-gradient(90deg,rgba(76,162,226,.035) 1px,transparent 1px);
-  background-size:48px 48px;
-  mask-image:linear-gradient(to bottom,transparent,black 18%,black 82%,transparent);
+    linear-gradient(rgba(92,137,195,.07) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(92,137,195,.07) 1px,transparent 1px);
+  background-size:72px 72px;
+  mask-image:linear-gradient(to bottom,transparent,black 10%,black 90%,transparent);
+  pointer-events:none;
+}
+
+.benefits:after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:
+    linear-gradient(115deg,transparent 0%,transparent 62%,rgba(117,181,255,.10) 62.2%,transparent 72%),
+    linear-gradient(180deg,transparent 0%,transparent 80%,rgba(117,181,255,.08) 80.2%,transparent 100%);
   pointer-events:none;
 }
 
@@ -707,128 +717,146 @@ h3{font-size:1.15rem;line-height:1.2}
 
 .benefits-heading{
   display:flex;
-  align-items:end;
-  justify-content:space-between;
-  gap:40px;
-  margin-bottom:38px;
+  justify-content:center;
+  text-align:center;
+  margin-bottom:42px;
 }
 
 .benefits-heading h2{
-  font-size:clamp(2.8rem,4.4vw,5rem);
-  max-width:850px;
-  letter-spacing:-.045em;
+  font-size:clamp(3rem,4.8vw,5.35rem);
+  max-width:980px;
+  letter-spacing:-.05em;
+  line-height:.95;
+  color:#071534;
+  text-shadow:0 14px 32px rgba(31,80,149,.08);
 }
 
 .metric-grid{
   display:grid;
   grid-template-columns:repeat(4,minmax(0,1fr));
-  gap:14px;
+  gap:22px;
 }
 
 .metric{
   position:relative;
-  min-height:190px;
-  padding:27px 25px;
+  min-height:222px;
+  padding:30px 28px 26px;
   display:flex;
   flex-direction:column;
   justify-content:flex-end;
-  gap:8px;
+  gap:10px;
   overflow:hidden;
-  border:1px solid rgba(88,180,255,.25);
-  border-radius:16px;
-  background:
-    linear-gradient(145deg,rgba(9,34,58,.92),rgba(4,18,31,.90));
-  box-shadow:0 18px 45px rgba(0,0,0,.16);
+  border:1px solid rgba(189,212,240,.95);
+  border-radius:20px;
+  background:rgba(255,255,255,.78);
+  box-shadow:0 22px 55px rgba(17,47,94,.08);
   transition:
     transform .25s ease,
-    border-color .25s ease,
-    box-shadow .25s ease;
+    box-shadow .25s ease,
+    border-color .25s ease;
+  backdrop-filter:blur(8px);
 }
 
 .metric:before{
   content:"";
   position:absolute;
-  width:150px;
-  height:150px;
-  top:-80px;
-  right:-60px;
+  width:170px;
+  height:170px;
+  top:-90px;
+  right:-70px;
   border-radius:50%;
-  background:rgba(22,120,255,.12);
-  filter:blur(4px);
+  background:rgba(74,145,241,.08);
+  filter:blur(2px);
   pointer-events:none;
 }
 
 .metric:hover{
   transform:translateY(-4px);
-  border-color:rgba(94,188,255,.55);
-  box-shadow:0 24px 60px rgba(0,0,0,.24);
+  border-color:rgba(94,154,231,.95);
+  box-shadow:0 28px 64px rgba(17,47,94,.12);
 }
 
 .metric-icon{
-  position:relative;
-  z-index:1;
-  color:#4fb5ff;
-  font-size:2rem;
+  display:grid;
+  place-items:center;
+  width:84px;
+  height:84px;
   margin-bottom:auto;
+  border-radius:50%;
+  background:linear-gradient(180deg,#eff6ff,#dcecff);
+  color:#1678ff;
+  font-size:2rem;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.9);
 }
 
 .metric strong{
   position:relative;
   z-index:1;
-  font-size:clamp(1.8rem,2.25vw,2.55rem);
-  color:#fff;
-  line-height:1;
-  letter-spacing:-.035em;
+  font-size:clamp(2rem,2.55vw,2.9rem);
+  color:#071534;
+  line-height:1.02;
+  letter-spacing:-.045em;
 }
 
 .metric span{
   position:relative;
   z-index:1;
-  font-size:.86rem;
-  color:#aabccd;
+  font-size:.92rem;
+  color:#66768d;
   line-height:1.45;
 }
 
-/* Make the $3M/MW number the visual anchor of the section. */
 .metric-price{
   grid-column:1 / -1;
-  min-height:205px;
+  min-height:278px;
   display:grid;
-  grid-template-columns:170px 1fr;
+  grid-template-columns:240px 1fr;
   align-items:center;
-  justify-content:initial;
-  gap:30px;
-  padding:28px 36px;
+  gap:36px;
+  padding:34px 40px;
   background:
-    radial-gradient(circle at 18% 50%,rgba(28,138,255,.18),transparent 27%),
-    linear-gradient(115deg,rgba(9,44,76,.98),rgba(4,19,33,.96) 58%,rgba(7,31,52,.98));
-  border-color:rgba(83,181,255,.5);
+    linear-gradient(90deg,rgba(243,248,255,.96) 0%,rgba(245,249,255,.98) 58%,rgba(235,244,255,.96) 100%);
+  border:1px solid rgba(162,205,246,.95);
   box-shadow:
-    0 24px 65px rgba(0,0,0,.25),
-    inset 0 0 45px rgba(34,137,255,.035);
+    0 30px 80px rgba(17,47,94,.10),
+    inset 0 0 0 1px rgba(255,255,255,.55);
 }
 
 .metric-price:before{
-  width:330px;
-  height:330px;
-  top:-190px;
-  right:-80px;
-  background:rgba(22,120,255,.18);
+  content:"";
+  position:absolute;
+  inset:auto 2.5% 6% auto;
+  width:35%;
+  height:70%;
+  border:1px solid rgba(106,161,231,.14);
+  border-radius:26px;
+  transform:skewX(-14deg);
+  pointer-events:none;
+}
+
+.metric-price:after{
+  content:"";
+  position:absolute;
+  right:6%;
+  top:16%;
+  width:24%;
+  height:1px;
+  background:linear-gradient(90deg,transparent,rgba(98,159,232,.5),transparent);
 }
 
 .metric-price-icon{
   display:flex;
   align-items:center;
   justify-content:center;
-  min-height:135px;
-  border-right:1px solid rgba(103,194,255,.20);
+  min-height:160px;
+  border-right:1px solid rgba(184,211,240,.9);
 }
 
 .metric-price-icon img{
   display:block;
-  width:130px;
+  width:160px;
   height:auto;
-  max-height:120px;
+  max-height:138px;
   object-fit:contain;
 }
 
@@ -840,27 +868,28 @@ h3{font-size:1.15rem;line-height:1.2}
 }
 
 .metric-price .metric-price-label{
-  color:#8fcfff;
-  text-transform:uppercase;
-  letter-spacing:.13em;
-  font-size:.72rem;
-  font-weight:800;
+  color:#687a91;
+  font-size:1rem;
+  font-weight:500;
+  letter-spacing:-.01em;
+  text-transform:none;
 }
 
 .metric-price strong{
-  font-size:clamp(3.3rem,6vw,6.2rem);
-  color:#59baff;
-  line-height:.9;
-  letter-spacing:-.06em;
+  font-size:clamp(4rem,6.8vw,7rem);
+  line-height:.92;
+  letter-spacing:-.07em;
+  color:#1678ff;
+  text-shadow:0 12px 28px rgba(22,120,255,.14);
 }
 
 .disclaimer{
-  max-width:880px;
-  margin:20px auto 0;
-  color:#7f93a7;
-  text-align:center;
-  font-size:.72rem;
-  line-height:1.55;
+  max-width:980px;
+  margin:24px auto 0;
+  color:#7a8798;
+  text-align:left;
+  font-size:.78rem;
+  line-height:1.6;
 }
 
 /* Traction */
@@ -895,11 +924,31 @@ h3{font-size:1.15rem;line-height:1.2}
     white-space:normal;
   }
   .metric-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
-  .metric-price{grid-column:1/-1}
+  .metric-price{grid-column:1/-1;grid-template-columns:200px 1fr;min-height:240px}
   .traction-grid{grid-template-columns:1fr 1fr}
   .traction-heading{grid-column:1/-1}
   .follow-inner{grid-template-columns:1fr auto}
   .follow-tagline{display:none}
+}
+
+@media (max-width:1080px){
+  .benefits{padding:96px 0 88px}
+  .benefits-heading h2{max-width:760px}
+}
+
+@media (max-width:840px){
+  .benefits{padding:84px 0 78px}
+  .benefits-heading{margin-bottom:30px}
+  .benefits-heading h2{font-size:clamp(2.5rem,10vw,3.5rem)}
+  .metric-grid{grid-template-columns:1fr;gap:18px}
+  .metric{min-height:unset;padding:24px}
+  .metric-price{grid-template-columns:1fr;gap:22px;padding:28px 24px;min-height:unset}
+  .metric-price-icon{border-right:0;border-bottom:1px solid rgba(184,211,240,.9);padding-bottom:18px;min-height:unset}
+  .metric-price-icon img{width:120px;max-height:110px}
+  .metric-price-copy{text-align:center;align-items:center}
+  .metric-price .metric-price-label{font-size:.95rem}
+  .metric-price strong{font-size:clamp(3.2rem,13vw,4.6rem)}
+  .disclaimer{text-align:center}
 }
 
 @media (max-width:840px){
