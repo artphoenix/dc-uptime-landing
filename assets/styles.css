@@ -711,10 +711,17 @@ h3{font-size:1.15rem;line-height:1.2}
   .platform-callout::before{
     content:"";
     position:absolute;
-    left:var(--pin-x,50%);
+    z-index:7;
+    left:calc(var(--pin-x,50%) - 1px);
     top:calc(var(--pin-line,84px) * -1);
+    width:2px;
     height:var(--pin-line,84px);
-    border-left:2px dashed rgba(103,196,255,.78);
+    border-left:0;
+    background:repeating-linear-gradient(
+      to bottom,
+      rgba(103,196,255,.9) 0 6px,
+      transparent 6px 12px
+    );
     opacity:0;
     pointer-events:none;
     filter:drop-shadow(0 0 6px rgba(89,190,255,.28));
@@ -723,6 +730,7 @@ h3{font-size:1.15rem;line-height:1.2}
   .platform-callout::after{
     content:"";
     position:absolute;
+    z-index:8;
     left:calc(var(--pin-x,50%) - 4px);
     top:calc(var(--pin-line,84px) * -1 - 4px);
     width:8px;
