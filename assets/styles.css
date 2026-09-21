@@ -752,6 +752,8 @@ h3{font-size:1.15rem;line-height:1.2}
 
 .metric:before{display:none}
 
+.metric strong,.metric span{max-width:100%}
+
 .metric-icon{
   position:relative;
   z-index:1;
@@ -778,11 +780,13 @@ h3{font-size:1.15rem;line-height:1.2}
   z-index:1;
   margin:0;
   color:#06153a;
-  font-size:clamp(1.95rem,2.2vw,2.55rem);
+  font-size:clamp(1.42rem,1.60vw,1.82rem);
   font-weight:800;
-  line-height:1.08;
-  letter-spacing:-.05em;
+  line-height:1.04;
+  letter-spacing:-.055em;
+  white-space:nowrap;
 }
+
 
 .metric span{
   position:relative;
@@ -791,14 +795,14 @@ h3{font-size:1.15rem;line-height:1.2}
   color:#66758f;
   font-size:1rem;
   line-height:1.28;
+  max-width:15ch;
 }
 
+
 .metric-pue strong{
-  font-size:clamp(1.42rem,1.60vw,1.82rem);
-  line-height:1.04;
-  letter-spacing:-.055em;
   white-space:nowrap;
 }
+
 
 .metric-price{
   grid-column:1 / -1;
