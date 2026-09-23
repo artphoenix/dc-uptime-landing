@@ -124,7 +124,7 @@ h3{font-size:1.15rem;line-height:1.2}
 .button{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:50px;padding:0 22px;border-radius:10px;font-weight:750;border:0;transition:transform .2s,box-shadow .2s,background .2s}
 .button-primary{background:linear-gradient(135deg,#0e67f3,#1689ff);color:white;box-shadow:0 12px 36px rgba(22,120,255,.28)}
 .button-primary:hover{transform:translateY(-2px);box-shadow:0 16px 42px rgba(22,120,255,.4)}
-.hero-side-note{text-transform:uppercase;letter-spacing:.17em;font-size:.72rem;font-weight:800;color:#8ed4ff;line-height:1.45;text-align:right;margin:0 12px 2vh 0}
+.hero-side-note{text-transform:uppercase;letter-spacing:.17em;font-size:.72rem;font-weight:800;color:#fff;line-height:1.45;text-align:right;margin:0 12px 2vh 0}.hero-side-note span{display:inline}
 .scroll-cue{position:absolute;z-index:2;bottom:22px;left:50%;width:28px;height:42px;border:1px solid rgba(255,255,255,.3);border-radius:20px;transform:translateX(-50%)}
 .scroll-cue span{position:absolute;width:4px;height:8px;background:#7fcfff;border-radius:4px;left:50%;top:8px;transform:translateX(-50%);animation:scrollDot 1.8s infinite}
 
@@ -1347,6 +1347,14 @@ h3{font-size:1.15rem;line-height:1.2}
     text-align:left;
     font-size:.70rem;
     line-height:1.45;
+  }
+
+  .hero-side-note span{
+    display:block;
+  }
+
+  .hero-side-note span + span{
+    margin-left:0;
   }
 
   .follow-tagline{
