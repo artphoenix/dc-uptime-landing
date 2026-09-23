@@ -1335,6 +1335,33 @@ h3{font-size:1.15rem;line-height:1.2}
   .footer-main{grid-template-columns:1fr}
   .footer-main nav{flex-wrap:wrap}
   .footer-bottom{text-align:left}
+
+  /* Mobile-only tagline visibility. Both taglines already exist in the HTML;
+     desktop/tablet behavior remains unchanged. */
+  .hero-side-note{
+    display:block;
+    justify-self:end;
+    max-width:300px;
+    margin:28px 0 0;
+    text-align:right;
+    font-size:.70rem;
+    line-height:1.45;
+  }
+
+  .follow-tagline{
+    display:block;
+    justify-self:start;
+    margin:8px 0 0;
+    max-width:320px;
+    text-align:left;
+  }
+
+  /* On mobile the desktop 50% background image becomes too small.
+     Fill the Follow section instead, while leaving laptop/desktop untouched. */
+  .follow-bg{
+    background-size:100% 100%,88% auto;
+    background-position:center center,center center;
+  }
 }
 
 @media (max-width:540px){
@@ -1435,6 +1462,10 @@ h3{font-size:1.15rem;line-height:1.2}
   .traction-card{grid-template-columns:72px 1fr;padding:20px}
   .its-logo{width:70px}
   .follow{padding:58px 0}
+  .follow-bg{
+    background-size:100% 100%,88% auto;
+    background-position:center center,58% center;
+  }
   .contact{padding:78px 0}
   .contact-form{padding:19px}
   .form-footer{
