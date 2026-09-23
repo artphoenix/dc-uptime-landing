@@ -921,6 +921,14 @@ h3{font-size:1.15rem;line-height:1.2}
 .traction-card-validation h3{max-width:none}
 .traction-card-validation p:last-child{max-width:none}
 
+/* Keep the Commercial Validation text block horizontally aligned
+   with the ITS Infocom card on desktop. */
+@media (min-width:841px){
+  .traction-card-validation .traction-card-copy{
+    transform:translateY(-8px);
+  }
+}
+
 /* Follow */
 .follow{position:relative;overflow:hidden;padding:72px 0;background:#071525}.follow-bg{position:absolute;inset:0;background-image:linear-gradient(90deg,rgba(3,11,20,.94),rgba(3,11,20,.78) 52%,rgba(3,11,20,.48)),url('images/scale-site.webp');background-size:cover;background-position:center 45%;filter:saturate(.85)}.follow-inner{position:relative;z-index:2;display:grid;grid-template-columns:1fr auto .65fr;gap:50px;align-items:center}.follow h2{font-size:clamp(2.3rem,3.8vw,4rem);margin-bottom:12px}.follow p{color:#c4d0dc;max-width:550px}.linkedin-button{display:flex;align-items:center;gap:12px;border:1px solid rgba(88,180,255,.45);background:rgba(7,31,54,.72);padding:14px 18px;border-radius:11px;font-weight:750;white-space:nowrap;backdrop-filter:blur(8px);transition:.25s}.linkedin-button:hover{background:rgba(16,70,116,.8);transform:translateY(-2px)}.linkedin-mark{display:grid;place-items:center;width:30px;height:30px;background:#0a66c2;border-radius:5px;font-size:.92rem}.follow-tagline{text-transform:uppercase;letter-spacing:.18em;font-size:.72rem!important;justify-self:end;line-height:1.55!important;color:#a8d9ff!important}
 
