@@ -160,12 +160,11 @@ h3{font-size:1.15rem;line-height:1.2}
 .problem-heading{display:grid;grid-template-columns:1.1fr .9fr;gap:70px;align-items:end;margin-bottom:46px}
 .problem-heading h2{font-size:clamp(2.4rem,4.2vw,4.45rem);max-width:760px}.problem-intro{font-size:1.12rem;color:#51627a;max-width:550px;margin-bottom:7px}
 .problem-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
-.problem-card{background:#fff;border:1px solid #dfe8f3;border-radius:16px;padding:26px;display:grid;grid-template-columns:54px 1fr;gap:18px;box-shadow:0 14px 38px rgba(22,42,73,.06);transition:transform .25s,box-shadow .25s}
+.problem-card{background:#fff;border:1px solid #dfe8f3;border-radius:16px;padding:24px 26px;display:grid;grid-template-columns:76px 1fr;gap:20px;align-items:center;box-shadow:0 14px 38px rgba(22,42,73,.06);transition:transform .25s,box-shadow .25s}
 .problem-card:hover{transform:translateY(-4px);box-shadow:0 18px 45px rgba(22,42,73,.1)}
-.problem-card h3{margin:3px 0 8px;color:#0b1830}.problem-card p{color:#66758a;font-size:.94rem;margin:0}.line-icon{width:50px;height:50px;border:2px solid var(--blue);border-radius:50%;position:relative;background:#f4f9ff}
-.clock:before{content:"";position:absolute;width:2px;height:13px;background:var(--blue);left:23px;top:10px}.clock:after{content:"";position:absolute;width:11px;height:2px;background:var(--blue);left:23px;top:23px;transform:rotate(35deg);transform-origin:left}
-.coins:before{content:"≡";position:absolute;inset:0;display:grid;place-items:center;color:var(--blue);font-size:28px;font-weight:800;transform:rotate(90deg)}
-.drop:before{content:"";position:absolute;width:18px;height:24px;border:2px solid var(--blue);border-radius:50% 50% 55% 55% / 60% 60% 40% 40%;left:14px;top:10px;transform:rotate(45deg)}
+.problem-card h3{margin:0 0 8px;color:#0b1830}
+.problem-card p{color:#66758a;font-size:.94rem;margin:0}
+.problem-icon{display:block;width:72px;height:72px;object-fit:contain;object-position:center;justify-self:center;align-self:center}
 
 /* Platform */
 .platform{
@@ -1397,6 +1396,8 @@ h3{font-size:1.15rem;line-height:1.2}
   .recognition{padding:18px;gap:14px}
   .recognition-title strong{font-size:1.16rem}
   .problem{padding:78px 0}
+  .problem-card{grid-template-columns:66px 1fr;gap:16px;padding:22px}
+  .problem-icon{width:62px;height:62px}
 
   /* iPhone / narrow-phone platform tuning */
   .platform-scroll{
