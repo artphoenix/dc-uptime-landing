@@ -1,10 +1,1 @@
-<svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
-  <defs>
-    <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0" stop-color="#58B4FF"/><stop offset="1" stop-color="#0E5FE6"/>
-    </linearGradient>
-  </defs>
-  <rect width="64" height="64" rx="14" fill="#061525"/>
-  <path d="M8 10h4M18 10h36v44H8V10" fill="none" stroke="url(#g)" stroke-width="3"/>
-  <path d="M15 20v24h7l6-6V26l-6-6h-7zm5 5h2l2 2v10l-2 2h-2V25zm12-5h8l6 6v4h-5v-2l-3-3h-1l-3 3v8l3 3h4v-3h5v5l-5 5h-9l-5-5V25l5-5z" fill="url(#g)"/>
-</svg>
+<svg overflow="hidden" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg" viewBox="97.6 43.13099041533546 425.6 370.6070287539936" style="max-height: 500px" width="425.6" height="370.6070287539936"><defs><linearGradient id="frameGrad" gradientUnits="userSpaceOnUse" y2="390" x2="500" y1="70" x1="120"><stop stop-color="#58B4FF" offset="0"/><stop stop-color="#0E5FE6" offset="1"/></linearGradient><linearGradient id="letterGrad" gradientUnits="userSpaceOnUse" y2="340" x2="462" y1="120" x1="158"><stop stop-color="#58B4FF" offset="0"/><stop stop-color="#0E5FE6" offset="1"/></linearGradient></defs><rect fill="none" height="500" width="1600" y="0" x="0"/><g><g fill="none" stroke-linecap="square" stroke-width="14" stroke="url(#frameGrad)"><path d="M120 70 145 70"/><path d="M185 70 500 70"/><path d="M500 70 500 390"/><path d="M500 390 120 390"/><path d="M120 390 120 70"/></g><g transform="translate(158 340)"><path fill-rule="evenodd" fill="url(#letterGrad)" d="M0 0 0-220 56-220 102-220 146-176 146-44 102 0 56 0ZM30-32 30-188 52-188 82-188 112-158 112-62 82-32 52-32Z"/><g transform="translate(146 0)"><path fill="url(#letterGrad)" d="M98-220 158-220 158-188 108-188 82-188 60-166 60-54 82-32 108-32 158-32 158 0 98 0 66 0 24-42 24-178 66-220Z"/></g></g></g><text y="330" x="550" letter-spacing="-5" font-size="255" font-weight="600" font-family="Inter,Avenir Next,Helvetica Neue,Arial,Arial" fill="#FFFFFF">Uptime</text></svg>
