@@ -1340,10 +1340,11 @@ h3{font-size:1.15rem;line-height:1.2}
      desktop/tablet behavior remains unchanged. */
   .hero-side-note{
     display:block;
-    justify-self:end;
+    justify-self:start;
+    width:100%;
     max-width:300px;
     margin:28px 0 0;
-    text-align:right;
+    text-align:left;
     font-size:.70rem;
     line-height:1.45;
   }
