@@ -916,17 +916,25 @@ h3{font-size:1.15rem;line-height:1.2}
 
 /* Traction */
 .traction{padding:95px 0}.traction-grid{display:grid;grid-template-columns:.8fr 1fr 1fr;gap:18px;align-items:stretch}.traction-heading{padding:16px 16px 16px 0}.traction-heading h2{font-size:clamp(2.15rem,3.3vw,3.8rem)}.traction-card{display:grid;grid-template-columns:105px 1fr;gap:20px;align-items:center;border:1px solid rgba(88,180,255,.3);border-radius:16px;background:#071a2c;padding:25px;transition:.25s}.traction-card:hover{transform:translateY(-4px);border-color:#4cafff}.its-logo{width:94px;height:auto}.card-label{margin:0 0 3px;color:#51b8ff;font-size:.75rem;font-weight:800;text-transform:uppercase;letter-spacing:.08em}.traction-card h3{font-size:1.35rem;margin:0 0 8px}.traction-card p:last-child{color:#aebdca;font-size:.9rem;margin:0}.handshake{font-size:3rem;color:#41aaff;text-align:center}
-.traction-card.traction-card-validation{grid-template-columns:1fr;padding:30px 34px}
-.traction-card-validation .traction-card-copy{width:100%;max-width:none}
-.traction-card-validation h3{max-width:none}
-.traction-card-validation p:last-child{max-width:none}
+.traction-card.traction-card-validation{grid-template-columns:1fr}
 
-/* Keep the Commercial Validation text block horizontally aligned
-   with the ITS Infocom card on desktop. */
-@media (min-width:841px){
-  .traction-card-validation .traction-card-copy{
-    transform:translateY(-8px);
-  }
+/* Shared vertical geometry for BOTH traction-card text blocks.
+   One set of parameters controls their horizontal alignment. */
+.traction-card-copy{
+  width:100%;
+  min-width:0;
+  min-height:116px;
+  align-self:center;
+  display:flex;
+  flex-direction:column;
+  justify-content:flex-start;
+}
+
+.traction-card-copy h3{max-width:none}
+.traction-card-copy p:last-child{max-width:none}
+
+@media (max-width:840px){
+  .traction-card-copy{min-height:auto}
 }
 
 /* Follow */
