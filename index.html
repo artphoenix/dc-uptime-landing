@@ -391,7 +391,7 @@
           <p>Interested in learning more, partnering or investing? We’d love to hear from you.</p>
         </div>
 
-        <form class="contact-form" action="https://formsubmit.co/ar@dcuptime.com" method="POST" accept-charset="UTF-8" data-reveal>
+        <form class="contact-form" action="https://formsubmit.co/ar@dcuptime.com" method="POST" accept-charset="UTF-8" data-formsubmit-ajax="https://formsubmit.co/ajax/ar@dcuptime.com" data-reveal>
           <input type="hidden" name="_subject" value="New inquiry from dcuptime.com">
           <input type="hidden" name="_template" value="table">
           <input type="hidden" name="_next" value="https://dcuptime.com/thanks.html">
@@ -402,7 +402,16 @@
             <div class="field"><label for="company">Company <span>*</span></label><input id="company" name="company" type="text" autocomplete="organization" required></div>
             <div class="field field-message"><label for="message">Message <span>*</span></label><textarea id="message" name="message" rows="4" required></textarea></div>
           </div>
-          <div class="form-footer"><p>All fields are required.</p><button class="button button-primary" type="submit">Send message <span aria-hidden="true">↗</span></button></div>
+          <div class="form-footer">
+            <p>All fields are required.</p>
+            <button class="button button-primary" type="submit">Send message <span aria-hidden="true">↗</span></button>
+          </div>
+          <p class="form-status" data-form-status role="status" aria-live="polite"></p>
+          <div class="form-success" aria-live="polite">
+            <div class="form-success-icon" aria-hidden="true">✓</div>
+            <h3>Thank you.</h3>
+            <p>Your message has been sent. We’ll get back to you shortly.</p>
+          </div>
         </form>
       </div>
     </section>
