@@ -83,7 +83,7 @@
 
   // Contact email validation.
   // Keep the browser's native type="email" validation,
-  // and additionally require a complete domain such as company.com.
+  // and additionally require a complete public-style domain such as company.com.
   const emailInput = document.querySelector('#email');
 
   if (emailInput) {
@@ -92,7 +92,7 @@
     const validateEmail = () => {
       emailInput.value = emailInput.value.trim();
 
-      // Leave empty required-field validation to the browser.
+      // Leave an empty required field to the browser's native required validation.
       if (!emailInput.value) {
         emailInput.setCustomValidity('');
         return;
@@ -107,5 +107,91 @@
 
     emailInput.addEventListener('input', validateEmail);
     emailInput.addEventListener('blur', validateEmail);
+  }
+
+  // Submit the contact form through FormSubmit's AJAX endpoint so the user
+  // stays on the DC Uptime website. The normal form action remains as a
+  // progressive-enhancement fallback if JavaScript/fetch is unavailable.
+  const contactForm = document.querySelector('.contact-form');
+
+  if (contactForm) {
+    const ajaxEndpoint = contactForm.dataset.formsubmitAjax;
+    const submitButton = contactForm.querySelector('button[type="submit"]');
+    const formStatus = contactForm.querySelector('[data-form-status]');
+    const originalButtonHTML =
+      submitButton?.innerHTML || 'Send message';
+
+    contactForm.addEventListener('submit', async (event) => {
+      if (!ajaxEndpoint || !window.fetch) return;
+
+      // Let the browser show native required/pattern validation first.
+      if (!contactForm.checkValidity()) {
+        event.preventDefault();
+        contactForm.reportValidity();
+        return;
+      }
+
+      event.preventDefault();
+
+      if (formStatus) {
+        formStatus.textContent = '';
+      }
+
+      if (submitButton) {
+        submitButton.disabled = true;
+        submitButton.textContent = 'Sending…';
+      }
+
+      const formData = new FormData(contactForm);
+      const payload = {};
+
+      for (const [key, value] of formData.entries()) {
+        // _next is only for the normal non-JavaScript fallback submission.
+        if (key === '_next') continue;
+
+        payload[key] = value;
+      }
+
+      try {
+        const response = await fetch(ajaxEndpoint, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+          },
+          body: JSON.stringify(payload)
+        });
+
+        const data = await response.json().catch(() => ({}));
+
+        if (
+          !response.ok ||
+          data.success === false ||
+          data.success === 'false'
+        ) {
+          throw new Error(
+            data.message || 'FormSubmit rejected the submission.'
+          );
+        }
+
+        contactForm.reset();
+        emailInput?.setCustomValidity('');
+        contactForm.classList.add('is-success');
+
+      } catch (error) {
+        console.error('Contact form submission failed:', error);
+
+        if (formStatus) {
+          formStatus.textContent =
+            'Sorry, your message could not be sent. Please try again.';
+        }
+
+      } finally {
+        if (submitButton) {
+          submitButton.disabled = false;
+          submitButton.innerHTML = originalButtonHTML;
+        }
+      }
+    });
   }
 })();
